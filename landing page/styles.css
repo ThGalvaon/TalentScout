@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+h1, h2 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Header */
+.header {
+    display: flex;
+    background: #fff;
+    padding: 1rem 0;
+    border-bottom: 1px solid #ddd;
+    flex-direction: row;
+}
+.header .logo {
+    display: flex;
+    align-items: center;
+}
+#png_logo{
+    size: 10px;
+}
+.header nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.header .btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.header .btn.login {
+    background: #fff;
+    color: #ff4500;
+    border: 1px solid #ff4500;
+}
+.header .btn.register {
+    background: #ff4500;
+    color: #fff;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    background: #eafaf1;
+}
+.hero-content {
+    max-width: 60%;
+}
+.hero-image img {
+    max-width: 100%;
+}
+
+/* Informative Section */
+.info {
+    padding: 2rem 0;
+    text-align: center;
+    background: #fff9e6;
+}
+.info h2 {
+    color: #333;
+}
+
+/* Support Section */
+.support {
+    background: #fff;
+    padding: 2rem 0;
+}
+.support-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: #fff;
+    padding: 2rem 0;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.footer-logo img {
+    max-width: 50px;
+}
+/* Footer */
+footer {
+    background: #333;
+    color: #fff;
+    padding: 2rem 0;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 1rem;
+}
+.footer-logo img {
+    max-width: 50px;
+}
+.footer-bottom {
+    text-align: center;
+    font-size: 0.875rem;
+    border-top: 1px solid #444;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    color: #ccc;
+}
