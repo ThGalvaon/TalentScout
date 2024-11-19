@@ -9,82 +9,122 @@ body {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: fit-content;
+    max-height: 150px;
 }
 h1, h2 {
-    margin-bottom: 1rem;
     color: #333;
 }
-
-/* Header */
+a{
+    text-decoration-line: none;
+}
+.times{
+    color: rgb(69, 112, 5);
+}
 .header {
     display: flex;
     background: #fff;
-    padding: 1rem 0;
     border-bottom: 1px solid #ddd;
-    flex-direction: row;
 }
-.header .logo {
+.header .logo{
     display: flex;
     align-items: center;
+    gap: 15px;
+}
+.logo img {
+    height: 90px;
 }
 #png_logo{
     size: 10px;
 }
-.header nav {
+.navigation {
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-bottom: 5px;
 }
 .header .btn {
     padding: 0.5rem 1rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
 }
 .header .btn.login {
     background: #fff;
     color: #ff4500;
     border: 1px solid #ff4500;
+    font-size: larger;
 }
 .header .btn.register {
     background: #ff4500;
     color: #fff;
+    font-size: larger;
+
 }
 
 /* Hero Section */
 .hero {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    padding: 2rem 0;
+
     background: #eafaf1;
 }
 .hero-content {
     max-width: 60%;
 }
 .hero-image img {
-    max-width: 100%;
+    max-height: 32vw;
+    max-width: 100%; 
 }
-
-/* Informative Section */
+.hero h1{
+    font-size: 90px;
+}
+.btn.cta{
+    margin-top: 30px;
+    border-radius: 10px;
+    background: #ff4500;
+    color: #fff;
+    font-size: 20px;
+    width: 60vh;
+    height: 5vh;
+}
 .info {
-    padding: 2rem 0;
+    padding: 8px;
     text-align: center;
     background: #fff9e6;
+    font-size: 23px;
 }
 .info h2 {
     color: #333;
+    font-size: 35px;
 }
 
 /* Support Section */
 .support {
-    background: #fff;
-    padding: 2rem 0;
+    background: #fff9e6;
+    display: flex;
+    flex-direction: column;
+}
+.support img{
+    max-height: 32vw;
+    max-width: 100%; 
+}
+.support h2{
+        font-family: "Covered By Your Grace", cursive;
+        text-align: center;
+        font-size: 80px;
+        color: #009387;
+        
 }
 .support-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    max-height: fit-content;
 }
 
 /* Footer */
