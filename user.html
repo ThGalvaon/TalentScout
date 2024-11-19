@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Peneiras</title>
+    <style>
+        /* CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header {
+            background: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+        }
+        .sidebar {
+            background: #f4f4f4;
+            width: 300px;
+            padding: 1rem;
+            border-right: 1px solid #ddd;
+        }
+        .sidebar h2 {
+            margin-top: 0;
+        }
+        .sidebar label {
+            display: block;
+            margin-top: 1rem;
+        }
+        .sidebar input,
+        .sidebar select,
+        .sidebar button {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .vagas {
+            flex: 1;
+            padding: 1rem;
+        }
+        .vagas h2 {
+            margin-top: 0;
+        }
+        .vaga {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+        }
+        .vaga h3 {
+            margin: 0 0 0.5rem 0;
+        }
+        .vaga button {
+            background: #28a745;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .vaga button:hover {
+            background: #218838;
+        }
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.hidden {
+            display: none;
+        }
+        .modal-content {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .modal-content button {
+            background: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .modal-content button:hover {
+            background: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <!-- HTML -->
+    <header class="header">
+        <h1>Sistema de Peneiras</h1>
+    </header>
+    <div class="container">
+        <!-- Sidebar de Filtros -->
+        <aside class="sidebar">
+            <h2>Filtrar Peneiras</h2>
+            <label for="age-filter">Faixa Etária</label>
+            <select id="age-filter">
+                <option value="">Todas</option>
+                <option value="Sub-18">Sub-18</option>
+                <option value="Sub-21">Sub-21</option>
+            </select>
+
+            <label for="location-filter">Localização</label>
+            <input type="text" id="location-filter" placeholder="Digite a cidade">
+
+            <button id="apply-filters">Aplicar Filtros</button>
+        </aside>
+
+        <!-- Área de Vagas -->
+        <main class="vagas">
+            <h2>Peneiras Disponíveis</h2>
+            <div id="peneiras-list">
+                <!-- Lista de peneiras será gerada dinamicamente -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de Inscrição -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Inscrição realizada com sucesso!</h2>
+            <p>Você se inscreveu nesta peneira.</p>
+            <button id="close-modal">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript
+        const peneiras = [
+            { id: 1, title: "Peneira Sub-18", age: "Sub-18", location: "São Paulo" },
+            { id: 2, title: "Peneira Sub-21", age: "Sub-21", location: "Rio de Janeiro" },
+            { id: 3, title: "Peneira Sub-18", age: "Sub-18", location: "Belo Horizonte" },
+        ];
+
+        const peneirasList = document.getElementById("peneiras-list");
+        const ageFilter = document.getElementById("age-filter");
+        const locationFilter = document.getElementById("location-filter");
+        const applyFiltersButton = document.getElementById("apply-filters");
+        const modal = document.getElementById("modal");
+        const closeModalButton = document.getElementById("close-modal");
+
+        function renderPeneiras(filterAge = "", filterLocation = "") {
+            peneirasList.innerHTML = "";
+            peneiras
+                .filter((peneira) => {
+                    const matchesAge = !filterAge || peneira.age === filterAge;
+                    const matchesLocation =
+                        !filterLocation ||
+                        peneira.location.toLowerCase().includes(filterLocation.toLowerCase());
+                    return matchesAge && matchesLocation;
+                })
+                .forEach((peneira) => {
+                    const vaga = document.createElement("div");
+                    vaga.className = "vaga";
+                    vaga.innerHTML = `
+                        <h3>${peneira.title}</h3>
+                        <p><strong>Idade:</strong> ${peneira.age}</p>
+                        <p><strong>Local:</strong> ${peneira.location}</p>
+                        <button onclick="inscrever(${peneira.id})">Inscrever-se</button>
+                    `;
+                    peneirasList.appendChild(vaga);
+                });
+        }
+
+        function inscrever(id) {
+            const peneira = peneiras.find((p) => p.id === id);
+            if (peneira) {
+                modal.classList.remove("hidden");
+            }
+        }
+
+        applyFiltersButton.addEventListener("click", () => {
+            const age = ageFilter.value;
+            const location = locationFilter.value;
+            renderPeneiras(age, location);
+        });
+
+        closeModalButton.addEventListener("click", () => {
+            modal.classList.add("hidden");
+        });
+
+        // Renderiza as peneiras inicialmente
+        renderPeneiras();
+    </script>
+</body>
+</html>
