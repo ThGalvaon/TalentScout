@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Poppins, sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -19,10 +19,13 @@ h1, h2 {
     color: #333;
 }
 a{
-    text-decoration-line: none;
+    text-decoration-line: none !important;
 }
 .times{
-    color: rgb(69, 112, 5);
+    color: rgb(69, 112, 5) !important;
+}
+.navigation a{
+    color: #8b7474;
 }
 .header {
     display: flex;
@@ -35,7 +38,7 @@ a{
     gap: 15px;
 }
 .logo img {
-    height: 90px;
+    height: 80px;
 }
 #png_logo{
     size: 10px;
@@ -70,7 +73,7 @@ a{
     display: flex;
     justify-content: space-around;
     align-items: center;
-
+    position: relative;
     background: #eafaf1;
 }
 .hero-content {
@@ -78,7 +81,12 @@ a{
 }
 .hero-image img {
     max-height: 32vw;
-    max-width: 100%; 
+    max-width: 100%;
+    margin-left: 3%;
+    z-index: 10%;
+    bottom: 0%;
+    position:relative;
+    right: 5%;
 }
 .hero h1{
     font-size: 90px;
@@ -102,65 +110,58 @@ a{
     color: #333;
     font-size: 35px;
 }
-
-/* Support Section */
+.info p{
+    max-width: 68%;
+    justify-self: center
+}
 .support {
     background: #fff9e6;
     display: flex;
     flex-direction: column;
+    height: fit-content;
+    position: relative;
 }
 .support img{
     max-height: 32vw;
-    max-width: 100%; 
+    max-width: 100%;
+    margin-left: 3%;
+    z-index: 10%;
+    bottom: 0%;
+    position:absolute;
+    left: 1%;
 }
 .support h2{
-        font-family: "Covered By Your Grace", cursive;
+        font-family: "Covered By Your Grace";
         text-align: center;
         font-size: 80px;
         color: #009387;
-        
+        width: 59%;
+        justify-self: center;
+        left: 0%;
 }
 .support-content {
     display: flex;
     justify-content: space-around;
     align-items: center;
     max-height: fit-content;
+    font-size: 3.1vh;
+    margin-right: 3%;
+    position: relative;
 }
-
-/* Footer */
-footer {
-    background: #333;
-    color: #fff;
-    padding: 2rem 0;
+.support li{
+    height: 7vw;
+    margin-left: 60vh;
+    position: relative;
 }
-.footer-content {
+footer{
+    width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
+    border-top: #344b49 solid 4px;
 }
-.footer-logo img {
-    max-width: 50px;
-}
-/* Footer */
-footer {
-    background: #333;
-    color: #fff;
-    padding: 2rem 0;
-}
-.footer-content {
+.my-5{
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding-bottom: 1rem;
-}
-.footer-logo img {
-    max-width: 50px;
-}
-.footer-bottom {
-    text-align: center;
-    font-size: 0.875rem;
-    border-top: 1px solid #444;
-    padding-top: 1rem;
-    margin-top: 1rem;
-    color: #ccc;
+    width: 100%;
+    margin-top: 0rem !important;
+    margin-bottom: 0rem !important;
 }
