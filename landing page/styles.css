@@ -109,10 +109,14 @@ a{
 .info h2 {
     color: #333;
     font-size: 35px;
+    margin-top: 2%;
 }
 .info p{
     max-width: 68%;
     justify-self: center
+}
+.info strong{
+    color: #333;
 }
 .support {
     background: #fff9e6;
@@ -153,6 +157,9 @@ a{
     margin-left: 60vh;
     position: relative;
 }
+strong{
+    color: #ff4500;
+}
 footer{
     width: 100%;
     display: flex;
@@ -164,4 +171,32 @@ footer{
     width: 100%;
     margin-top: 0rem !important;
     margin-bottom: 0rem !important;
+}
+/* Hover para o botão login */
+.header .btn.login:hover {
+    background: #ff4500;
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover para o botão register */
+.header .btn.register:hover {
+    background: #fff;
+    color: #ff4500;
+    border: 1px solid #ff4500;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+/* Hover para os ícones no footer */
+footer .btn-floating:hover {
+    background-color: #ff4500; /* Cor de fundo laranja */
+    color: white; /* Cor do ícone */
+    transform: scale(1.2); /* Aumenta o tamanho do ícone */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+.btn.cta:hover {
+    background: #fff;
+    color: #ff4500;
+    border: 1px solid #ff4500;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, border 0.5s ease-in-out, transform 0.3s ease-in-out;
+    transform: scale(1.05);
 }
