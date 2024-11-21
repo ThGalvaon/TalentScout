@@ -1,0 +1,226 @@
+/* Importa a fonte Poppins do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Declaração de variáveis CSS para cores e gradientes */
+:root {
+    --color-light-50: #f8fafc; /* Cor de fundo claro */
+    --color-dark-50: #797984;  /* Cor de texto claro */
+    --color-dark-100: #412f24; /* Cor escura de fundo */
+    --color-dark-900: #000;    /* Cor de texto escuro */
+    
+    --color-orange-50: #ff7f32;  /* Laranja mais vibrante */
+    --color-orange-100: #d65a0e; /* Laranja mais escuro */
+    --color-orange-200: #9c3e0d; /* Laranja profundo */
+
+    /* Gradiente criado a partir das cores de laranja */
+    --color-gradient: linear-gradient(90deg, var(--color-orange-50), var(--color-orange-100), var(--color-orange-200));
+}
+
+/* Estilização geral de todos os elementos */
+* {
+    font-family: 'Poppins', sans-serif; /* Define a fonte Poppins para todos os elementos */
+    margin: 0; /* Remove margens padrão */
+    padding: 0; /* Remove preenchimento padrão */
+    box-sizing: border-box; /* Faz com que a largura e altura incluam padding e bordas */
+}
+
+/* Estilo do container principal */
+#container {
+    height: 100vh; /* Altura total da tela */
+    width: 100%; /* Largura total */
+    background-color: #797567; /* Cor de fundo do container */
+    display: flex; /* Usa Flexbox para layout */
+    align-items: center; /* Centraliza verticalmente os filhos */
+    justify-content: center; /* Centraliza horizontalmente os filhos */
+    overflow: auto;
+}
+
+/* Estilo do formulário de cadastro */
+#cadastro_form{
+    background-color: var(--color-light-50); /* Cor de fundo do formulário */
+    display: flex; /* Utiliza Flexbox */
+    flex-direction: column; /* Alinha os elementos em coluna */
+    padding: 1% 7%; /* Preenchimento interno do formulário */
+    border-radius: 10px; /* Bordas arredondadas */
+    gap: 15px; /* Espaço entre os elementos internos */
+    box-shadow: 5px 5px 8px rgb(0, 0, 0, 0.336); /* Sombra do formulário */
+    height: fit-content; /* Altura ajustada ao conteúdo */
+    animation: dark-to-light 0.3s ease-in-out; /* Animação ao aparecer */
+    max-width: 50%;
+    position: absolute;
+}
+
+/* Estilo do cabeçalho do formulário */
+#form_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Estilo do título do cabeçalho */
+#form_header h1{
+    font-size: 40px; /* Tamanho da fonte do título */
+    position: relative; /* Para posicionar o pseudo-elemento abaixo do título */
+}
+
+/* Linha abaixo do título usando um pseudo-elemento */
+#form_header h1:before{
+    position: absolute; /* Permite que seja posicionado em relação ao título */
+    content: ""; /* Necessário para exibir o elemento */
+    width: 100%; /* Largura total da linha */
+    background-color: var(--color-orange-50); /* Cor da linha */
+    height: 3px; /* Altura da linha */
+    bottom: 10px; /* Distância da parte inferior do título */
+    border-radius: 5px;  /* Bordas arredondadas da linha */
+}
+
+/* Estilo do ícone que muda o modo (dia/noite) */
+#mode_icon{
+    cursor: pointer; /* Indica que o ícone é clicável */
+    font-size: 25px; /* Tamanho da fonte do ícone */
+}
+
+/* Estilo para a logo */
+#social_media{
+    display: flex; /* Utiliza Flexbox */
+    justify-content: space-around; /* Espaça os ícones igualmente */
+}
+
+#social_media img {
+    width: 90px;
+    transition: 0.5s linear;
+}
+
+/* Efeito de hover nas imagem da logo */
+#social_media img:hover {
+    transform: scale(1.2); /* Aumenta a imagem ao passar o mouse */
+}
+
+/* Estilo da seção de inputs do formulário */
+#inputs {
+    display: flex; /* Utiliza Flexbox */
+    flex-direction: column; /* Alinha os inputs em coluna */
+    align-items: center; /* Centraliza horizontalmente os elementos */
+    justify-content: center; /* Centraliza verticalmente os elementos */
+    gap: 15px; /* Espaço entre os inputs */
+}
+
+::placeholder{
+    font-family: Poppins;
+    font-size: small;
+}
+
+/* Estilo dos rótulos dos campos de entrada */
+.input-box label {
+    font-size: 14px; /* Tamanho da fonte do rótulo */
+    color: var(--color-dark-50); /* Cor do texto do rótulo */
+}
+
+/* Estilo do campo de entrada */
+.input-field{
+    display: flex; /* Utiliza Flexbox */
+    align-items: center; /* Alinha verticalmente os elementos */
+    gap: 15px; /* Espaço entre ícones e campos de entrada */
+    padding: 3px; /* Preenchimento interno do campo */
+    cursor: text; /* Indica que o campo é editável */
+    border-bottom: 1px solid var(--color-orange-50); /* Borda inferior do campo */
+}
+
+/* Estilo do texto dentro do campo de entrada */
+.input-field {
+    font-size: 18px; /* Tamanho da fonte do texto */
+    color: var(--color-dark-900); /* Cor do texto */
+}
+
+/* Estilo do elemento de input dentro do campo de entrada */
+.input-field input{
+    border: none; /* Remove a borda padrão */
+    background-color: transparent; /* Fundo transparente */
+    width: 260px; /* Largura do campo de entrada */
+    font-size: 18px; /* Tamanho da fonte do campo de entrada */
+    padding: 0px 5px; /* Preenchimento interno do campo */
+}
+
+/* Remove o contorno ao focar no campo de entrada */
+.input-field input:focus:focus {
+    outline: none; /* Remove a borda de foco padrão */
+}
+
+/* Estilo do link que leva ao login */
+#ir_login a {
+    color: var(--color-dark-50); /* Cor do texto do link */
+    text-decoration: none; /* Remove o sublinhado do link */
+    font-size: 14px; /* Tamanho da fonte do link */
+}
+
+/* Efeito de hover no link para login */
+#ir_login a:hover{
+    color: var(--color-orange-50); /* Muda a cor do link ao passar o mouse */
+}
+
+/* Estilo do botão de cadastro */
+#cadastro_button{
+    border: none; /* Remove a borda padrão */
+    background-color: #ff4500; /* Cor de fundo do botão */
+    color: var(--color-light-50); /* Cor do texto do botão */
+    padding: 7px 40px; /* Preenchimento interno do botão */
+    font-size: 18px; /* Tamanho da fonte do botão */
+    border-radius: 3px; /* Bordas arredondadas do botão */
+    font-weight: bold; /* Texto em negrito */
+    cursor: pointer; /* Indica que o botão é clicável */
+    transition: 0.5s linear; /* Transição suave para hover */
+    width: 100%; /* Largura do botão */
+}
+
+/* Efeito de hover no botão de cadastro */
+#cadastro_button:hover{
+    transform: scale(1.05); /* Aumenta o botão ao passar o mouse */
+}
+
+/* Estilos para o modo escuro do formulário */
+.dark#cadastro_form{
+    color: var(--color-light-50); /* Cor do texto no modo escuro */
+    background-color: var(--color-dark-100); /* Cor de fundo no modo escuro */
+    animation: light-to-dark 0.3s ease-in-out; /* Animação ao mudar para o modo escuro */
+}
+
+/* Estilos dos inputs e ícones no modo escuro */
+.dark#cadastro_form .input-field input,
+.dark#cadastro_form .input-field i{
+    color: var(--color-light-50); /* Cor do texto e ícones no modo escuro */
+}
+
+/* Animação para transição de cores do fundo do formulário 
+do modo claro para o modo escuro */
+@keyframes dark-to-light {
+    0%{
+        background-color:var(--color-dark-100); /* Cor de fundo inicial (modo claro) */
+    }
+    100%
+{ /* Estado final da animação */
+        background-color: var(--color-light-50); /* Cor de fundo final 
+        (modo escuro) */
+    }
+}
+
+
+/* Animação para transição de cores do fundo 
+do formulário do modo claro para o modo escuro */
+@keyframes light-to-dark {
+    0%{/* Estado inicial da animação */
+        background-color: var(--color-light-50);/* Cor de fundo inicial 
+        (modo claro) */
+    }
+
+    100%{ /* Estado final da animação */
+        background-color:var(--color-dark-100);/* Cor de fundo final 
+        (modo escuro) */
+    }
+}
+
+#div_mensagem{
+    opacity: 0.70;
+    font-size: 14px;
+    width: 100%;
+    color: red;
+}

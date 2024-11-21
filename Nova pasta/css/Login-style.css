@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --color-light-50: #f8fafc;
+    --color-dark-50: #797984; 
+    --color-dark-100: #412f24; 
+    --color-dark-900: #000; 
+
+    --color-orange-50: #ff7f32;  /* Laranja mais vibrante */
+    --color-orange-100: #d65a0e; /* Laranja mais escuro */
+    --color-orange-200: #9c3e0d; /* Laranja bem profundo */
+
+    --color-gradient: linear-gradient(90deg, var(--color-orange-50), var(--color-orange-100), var(--color-orange-200));
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+#container {
+    height: 100vh;
+    width: 100%;
+    background-color: #797567;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login_form {
+    background-color: var(--color-light-50);
+    display: flex;
+    flex-direction: column;
+    padding: 30px 40px;
+    border-radius: 8px;
+    gap: 30px;
+    box-shadow: 5px 5px 8px rgb(0, 0, 0, 0.336);
+    height: fit-content;
+    animation: dark-to-light 0.3s ease-in-out;
+}
+
+#form_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#form_header h1 {
+    font-size: 40px;
+    position: relative;
+}
+
+#form_header h1:before {
+    position: absolute;
+    content: "";
+    width: 40%;
+    background-color: var(--color-orange-50);
+    height: 3px;
+    bottom: 10px;
+    border-radius: 5px;
+}
+
+#mode_icon {
+    cursor: pointer;
+    font-size: 25px;
+}
+
+#social_media {
+    display: flex;
+    justify-content: space-around;
+}
+
+#social_media img {
+    width: 90px;
+    transition: 0.5s linear;
+}
+
+#social_media img:hover {
+    transform: scale(1.2);
+}
+
+#inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+::placeholder {
+    font-family: Poppins;
+    font-size: small;
+}
+
+.input-box label {
+    font-size: 14px;
+    color: var(--color-dark-50);
+}
+
+.input-field {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 3px;
+    cursor: text;
+    border-bottom: 1px solid var(--color-orange-50);
+}
+
+.input-field {
+    font-size: 18px;
+    color: var(--color-dark-900);
+}
+
+.input-field input {
+    border: none;
+    background-color: transparent;
+    width: 260px;
+    font-size: 18px;
+    padding: 0px 5px;
+}
+
+.input-field input:focus:focus {
+    outline: none;
+}
+
+#ir_cadastro a {
+    color: var(--color-dark-50);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+#ir_cadastro a:hover {
+    color: var(--color-orange-50);
+}
+
+#login_button {
+    border: none;
+    background-color: #ff4500;
+    color: var(--color-light-50);
+    padding: 7px;
+    font-size: 18px;
+    border-radius: 3px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.5s linear;
+}
+
+#login_button:hover {
+    transform: scale(1.05);
+}
+
+.dark#login_form {
+    color: var(--color-light-50);
+    background-color: var(--color-dark-100);
+    animation: light-to-dark 0.3s ease-in-out;
+}
+
+.dark#login_form .input-field input,
+.dark#login_form .input-field i {
+    color: var(--color-light-50);
+}
+
+@keyframes dark-to-light {
+    0% {
+        background-color: var(--color-dark-100);
+    }
+
+    100% {
+        background-color: var(--color-light-50);
+    }
+}
+
+@keyframes light-to-dark {
+    0% {
+        background-color: var(--color-light-50);
+    }
+
+    100% {
+        background-color: var(--color-dark-100);
+    }
+}

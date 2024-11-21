@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<!-- Declara que o documento é HTML5 e define o idioma como português do Brasil -->
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Define a codificação de caracteres como UTF-8 -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Configura a visualização em dispositivos móveis para uma escala adequada -->
+
+  <!-- Link para o Font Awesome, uma biblioteca de ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="./css/Cadastro-style.css">
+  <!-- Link para o arquivo CSS local que contém os estilos da página -->
+
+  <title>Cadastro</title>
+  <!-- Título da página que aparece na aba do navegador -->
+</head>
+
+<body>
+  <main id="container">
+    <!-- Contêiner principal do formulário de cadastro -->
+
+    <form id="cadastro_form">
+      <!-- Formulário de cadastro -->
+
+      <div id="form_header">
+        <h1>Cadastro</h1>
+        <!-- Cabeçalho do formulário com o título -->
+        <i id="mode_icon" class="fa-solid fa-moon"></i>
+        <!-- Ícone para mudar entre modos claro e escuro -->
+      </div>
+
+      <div id="social_media">
+        <a href="index.html">
+          <img src="./assets/logo.png" alt="Moun Soya logo">
+          <!-- Logo do site, que é clicável -->
+        </a>
+      </div>
+
+      <div id="inputs">
+        <!-- Contêiner para os campos de entrada -->
+
+        <div class="input-box">
+          <label for="razao_social">
+            Razão social
+            <div class="input-field">
+              <i class="fa-solid fa-file-contract"></i>
+              <!-- Ícone relacionado à razão social -->
+              <input type="text" id="razao_social" name="razao_social" required onblur="validarRazao()"placeholder="EX: Xpto">
+              <!-- Campo de entrada para a razão social, com validação ao perder o foco -->
+            </div>
+          </label>
+        </div>
+
+        <div class="input-box">
+          <label for="nome_fantasia">
+            Nome fantasia
+            <div class="input-field">
+              <i class="fa-solid fa-tag"></i>
+              <!-- Ícone relacionado ao nome fantasia -->
+              <input type="text" id="nome_fantasia" name="nome_fantasia" required onblur="validarFantasia()"placeholder="EX: Xpto corporation">
+              <!-- Campo de entrada para o nome fantasia, com validação ao perder o foco -->
+            </div>
+          </label>
+        </div>
+
+        <!-- Campo CNPJ -->
+        <div class="input-box">
+          <label for="cnpj">
+            CNPJ
+            <div class="input-field">
+              <i class="fa-solid fa-id-card"></i>
+              <!-- Ícone relacionado ao CNPJ -->
+              <input type="text" id="cnpj" name="cnpj" required onblur="validarCNPJ()"placeholder="EX: 11122233344455">
+              <!-- Campo de entrada para o CNPJ, com validação ao perder o foco -->
+            </div>
+          </label>
+        </div>
+
+        <!-- Campo Representante legal -->
+        <div class="input-box">
+          <label for="Representante">
+            Representante legal
+            <div class="input-field">
+              <i class="fa-solid fa-user-tie"></i>
+              <!-- Ícone relacionado ao representante legal -->
+              <input type="tel" id="Representante" name="Representante" required onblur="validarRepresentante()"placeholder="EX: Eduardo Oliveira">
+              <!-- Campo de entrada para o representante legal, com validação ao perder o foco -->
+            </div>
+          </label>
+        </div>
+
+        <div class="input-box">
+          <label for="email">
+            Email
+            <div class="input-field">
+              <i class="fa-solid fa-envelope"></i>
+              <!-- Ícone relacionado ao email -->
+              <input type="email" id="email" name="email" required onblur="validarEmail()"placeholder="EX: xpto@gmail.com">
+              <!-- Campo de entrada para o email, com validação ao perder o foco -->
+            </div>
+          </label>
+        </div>
+
+        <div class="input-box">
+          <label for="password">
+            Senha
+            <div class="input-field">
+              <i class="fa-solid fa-key"></i>
+              <!-- Ícone relacionado à senha -->
+              <input type="password" id="password" name="password" required onblur="validarSenha()" oninput="validarSenha()" placeholder="EX: Xpto@123">
+              <!-- Campo de entrada para a senha, com validação ao perder o foco -->
+            </div>
+          </label>
+        </div>
+        <div id="div_mensagem">A senha deve incluir 8 caracteres 1 maisculo e 1 minusculo 1 numero e 1 caractere especial</div>
+
+        <!-- Campo de confirmar senha -->
+        <div class="input-box">
+          <label for="confirm_password">
+            Confirmar Senha
+            <div class="input-field">
+              <i class="fa-solid fa-key"></i>
+              <!-- Ícone relacionado à confirmação de senha -->
+              <input type="password" id="confirm_password" name="confirm_password" required
+                onblur="validarConfirmacao()" placeholder="EX: Xpto@123">
+              <!-- Campo de entrada para confirmar a senha, com validação ao perder o foco -->
+            </div>
+          </label>
+        </div>
+
+        <div id="ir_login">
+          <a href="login.html">
+            Já possuo Login
+            <!-- Link para a página de login, caso o usuário já tenha uma conta -->
+          </a>
+        </div>
+      </div>
+
+      <button type="submit" id="cadastro_button" onclick="validarCadastro()">
+        Cadastro
+        <!-- Botão para enviar o formulário de cadastro -->
+      </button>
+    </form>
+
+    <div id="validado" style="color: red;"></div>
+    <!-- Elemento para mostrar mensagens de erro, onde mensagens de validação serão exibidas -->
+
+    <div id="div_erro"></div>
+    <!-- Outro elemento, que parece não estar em uso no momento -->
+  </main>
+
+  <script type="text/javascript" src="./js/Cadastro-cript.js"></script>
+  <!-- Link para o arquivo JavaScript que contém a lógica do formulário -->
+</body>
+
+</html>
