@@ -22,17 +22,19 @@
     margin: 0; /* Remove margens padrão */
     padding: 0; /* Remove preenchimento padrão */
     box-sizing: border-box; /* Faz com que a largura e altura incluam padding e bordas */
+
 }
 
 /* Estilo do container principal */
 #container {
     height: 100vh; /* Altura total da tela */
     width: 100%; /* Largura total */
-    background-color: #797567; /* Cor de fundo do container */
     display: flex; /* Usa Flexbox para layout */
     align-items: center; /* Centraliza verticalmente os filhos */
     justify-content: center; /* Centraliza horizontalmente os filhos */
     overflow: auto;
+    background-color: #797567; /* Cor de fundo do container */
+
 }
 
 /* Estilo do formulário de cadastro */
