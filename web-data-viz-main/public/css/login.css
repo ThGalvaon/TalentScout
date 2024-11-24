@@ -78,7 +78,7 @@ a {
 }
 
 #social_media img {
-    width: 90px;
+    width: 100px;
     transition: 0.5s linear;
 }
 
@@ -102,6 +102,8 @@ a {
 .input-box label {
     font-size: 14px;
     color: var(--color-dark-50);
+    padding: 0 7px 0 7px;
+
 }
 
 .input-field {
@@ -134,6 +136,8 @@ a {
     color: var(--color-dark-50);
     text-decoration: none;
     font-size: 14px;
+    color: #db7434;
+
 }
 
 #ir_cadastro a:hover {
@@ -154,35 +158,4 @@ a {
 
 #login_button:hover {
     transform: scale(1.05);
-}
-
-.dark#login_form {
-    color: var(--color-light-50);
-    background-color: var(--color-dark-100);
-    animation: light-to-dark 0.3s ease-in-out;
-}
-
-.dark#login_form .input-field input,
-.dark#login_form .input-field i {
-    color: var(--color-light-50);
-}
-
-@keyframes dark-to-light {
-    0% {
-        background-color: var(--color-dark-100);
-    }
-
-    100% {
-        background-color: var(--color-light-50);
-    }
-}
-
-@keyframes light-to-dark {
-    0% {
-        background-color: var(--color-light-50);
-    }
-
-    100% {
-        background-color: var(--color-dark-100);
-    }
 }

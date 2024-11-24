@@ -1,82 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>AquaTech | Página Inicial</title>
-
-    <script src="./js/sessao.js"></script>
-
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <title>Talent Scout - Encontre sua Peneira</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="icon" href="./assets/icon/favicon2.png">
 </head>
-
 <body>
-    <div class="header">
-      <div class="container">
-        <h1 class="titulo">AquaTech</h1>
-        <ul class="navbar">
-          <li class="agora">
-            <a href="#">Inicial</a>
-          </li>
-          <li>
-            <a href="simulador.html">Simulador</a>
-          </li>
-          <li>|</li>
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  
-    <div class="banner">
-      <div class="container">
-        <p>Preservando <span>hoje</span> para existirem <span>amanhã</span>.</p>
-      </div>
-    </div>
-  
-    <div class="social">
-      <div class="container">
-        <div class="boxes">
-          <div class="box">
-            <img src="assets/imgs/planet-earth_color.png">
-            <h4>Missão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/lightbulb_color.png">
-            <h4>Visão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/growth_color.png">
-            <h4>Valores</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="assets/imgs/logo.png" alt="Talent Scout Logo" id="png_logo">
+                <h1>Talent Scout</h1>
+            </div>
+            <nav class="navigation">
+                <a href="#">Institucional</a>
+                <a href="#" class="times">Para Times</a>
+                <a href="login.html"><button class="btn login">Login</button></a>
+                <a href="cadastro.html"><button class="btn register">Crie sua conta</button></a>
+            </nav>
         </div>
-      </div>
-    </div>
-  
-    <div class="footer">
-      <div class="container">
-        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-        <span class="version">v1.0.0</span>
-      </div>
-    </div>
-  </body>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Encontre a Peneira Perfeita para Você!</h1>
+                <p> <br>
+                    <strong>• PARA ATLETAS:</strong> CRIE SEU PERFIL E SE INSCREVA NAS PENEIRAS DOS TIMES QUE ESTÃO PROCURANDO NOVOS TALENTOS.<br>
+                    <strong>• PARA TIMES:</strong> CADASTRE SUA EQUIPE, CRIE PENEIRAS E ENCONTRE O TALENTO QUE O SEU TIME PRECISA!
+                </p>
+                <button class="btn cta">Cadastre-se e descubra seu próximo time</button>
+            </div>
+            <div class="hero-image">
+                <img src="assets/imgs/pessoa2.png" alt="Jogador segurando uma bola">
+            </div>
+        </section>
+        <section class="info">
+            <h2>Bem-vindo à nossa plataforma de Peneiras!</h2>
+            <p>
+                Aqui, <strong>conectamos talentos com oportunidades esportivas</strong> e oferecemos uma <strong>experiência prática</strong> e segura para jogadores e times.<br>
+                <strong>Explore as oportunidades</strong> de peneiras, conheça os requisitos de cada uma e cadastre-se para dar o <strong>próximo passo na sua jornada esportiva!</strong>
+            </p><br>
+        </section>
 
+        <section class="support">
+            <div class="support-title">
+                <h2>Estamos ao seu lado para <br>apoiar sua jornada</h2><br><br><br>
+            </div>
+            <div class="support-content">
+                <img src="assets/imgs/pessoa1.png" alt="Pessoa segurando celular">
+                    <ul>
+                        <li><strong>Peneiras Abertas:</strong> Veja todas as vagas de peneiras disponíveis e inscreva-se nas que mais combinam com seu perfil.</li>
+                        <li><strong>Notificações e Atualizações:</strong> Receba notificações sobre inscrições e prazos das peneiras que você escolheu.</li>
+                        <li><strong>Perfil Personalizado:</strong> Crie um perfil completo para que os times conheçam melhor suas habilidades.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Remove o container se quiser que o Footer ocupe a largura total da tela -->
+<div class="my-5">
+    <footer class="bg-dark text-center text-white">
+      <div class="p-4">
+        <section class="mb-4">
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+            <i class="fab fa-google"></i>
+          </a>
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+            <i class="fab fa-github"></i>
+          </a>
+        </section>
+      </div>
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2024 Copyright
+        <a>Talent Scout</a>
+      </div>
+    </footer>
+  </div> 
 </html>
+<script>
+
+</script>

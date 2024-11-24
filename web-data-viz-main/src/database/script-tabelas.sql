@@ -9,10 +9,6 @@ CREATE TABLE Usuario (
     senha VARCHAR(45) NOT NULL
 );
 
-create TABLE aquario (
-fk_empresa INT
-
-);
  CREATE TABLE Time (
     idTime INT AUTO_INCREMENT PRIMARY KEY,
     nome_time VARCHAR(45) NOT NULL,

@@ -44,4 +44,6 @@ CREATE TABLE Inscricoes (
     FOREIGN KEY (fkTime) REFERENCES Time(idTime)
 );
 
-SELECT * FROM usuarios;
+DESC usuario;
+
+SELECT * FROM usuario;

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,35 +14,29 @@
             flex-direction: column;
             height: 100vh;
         }
-
         .header {
             background: #333;
             color: #fff;
             padding: 1rem;
             text-align: center;
         }
-
         .container {
             display: flex;
             flex: 1;
         }
-
         .sidebar {
             background: #f4f4f4;
             width: 300px;
             padding: 1rem;
             border-right: 1px solid #ddd;
         }
-
         .sidebar h2 {
             margin-top: 0;
         }
-
         .sidebar label {
             display: block;
             margin-top: 1rem;
         }
-
         .sidebar input,
         .sidebar select,
         .sidebar button {
@@ -53,27 +46,22 @@
             border: 1px solid #ddd;
             border-radius: 5px;
         }
-
         .vagas {
             flex: 1;
             padding: 1rem;
         }
-
         .vagas h2 {
             margin-top: 0;
         }
-
         .vaga {
             border: 1px solid #ddd;
             padding: 1rem;
             margin-bottom: 1rem;
             border-radius: 5px;
         }
-
         .vaga h3 {
             margin: 0 0 0.5rem 0;
         }
-
         .vaga button {
             background: #28a745;
             color: #fff;
@@ -82,11 +70,9 @@
             cursor: pointer;
             border-radius: 5px;
         }
-
         .vaga button:hover {
             background: #218838;
         }
-
         .modal {
             position: fixed;
             top: 0;
@@ -98,18 +84,15 @@
             justify-content: center;
             align-items: center;
         }
-
         .modal.hidden {
             display: none;
         }
-
         .modal-content {
             background: #fff;
             padding: 2rem;
             border-radius: 5px;
             text-align: center;
         }
-
         .modal-content button {
             background: #dc3545;
             color: #fff;
@@ -118,13 +101,11 @@
             cursor: pointer;
             border-radius: 5px;
         }
-
         .modal-content button:hover {
             background: #c82333;
         }
     </style>
 </head>
-
 <body>
     <!-- HTML -->
     <header class="header">
@@ -133,19 +114,31 @@
     <div class="container">
         <!-- Sidebar de Filtros -->
         <aside class="sidebar">
-            <h2>Filtrar Peneiras</h2>
-            <label for="age-filter">Faixa Etária</label>
-            <select id="age-filter">
-                <option value="">Todas</option>
+            <h2>Cadastrar Nova Peneira</h2>
+            <label for="desc">Descrição</label>
+            <input type="text" id="desc" placeholder="Descrição da Peneira">
+        
+            <label for="vagas">Quantidade de Vagas</label>
+            <input type="number" id="vagas" placeholder="Número de vagas">
+        
+            <label for="idade">Idade</label>
+            <select id="idade">
                 <option value="Sub-18">Sub-18</option>
                 <option value="Sub-21">Sub-21</option>
             </select>
-
-            <label for="location-filter">Localização</label>
-            <input type="text" id="location-filter" placeholder="Digite a cidade">
-
-            <button id="apply-filters">Aplicar Filtros</button>
+        
+            <label for="bairro">Bairro</label>
+            <input type="text" id="bairro" placeholder="Bairro de São Paulo">
+        
+            <label for="dataInicio">Data de Início</label>
+            <input type="date" id="dataInicio">
+        
+            <label for="dataFim">Data de Fim</label>
+            <input type="date" id="dataFim">
+        
+            <button id="cadastrar-peneira">Cadastrar Peneira</button>
         </aside>
+        
 
         <!-- Área de Vagas -->
         <main class="vagas">
@@ -166,20 +159,16 @@
     </div>
 
     <script>
-        // JavaScript
+        // Dados Mockados
         const peneiras = [
-            { id: 1, title: "Peneira Sub-18", age: "Sub-18", location: "São Paulo" },
-            { id: 2, title: "Peneira Sub-21", age: "Sub-21", location: "Rio de Janeiro" },
-            { id: 3, title: "Peneira Sub-18", age: "Sub-18", location: "Belo Horizonte" },
+            { id: 1, title: "Peneira Sub-18", age: "Sub-18", location: "Vila Mariana", data_inicio: "2024-11-25", data_fim: "2024-12-10" },
+            { id: 2, title: "Peneira Sub-21", age: "Sub-21", location: "Moema", data_inicio: "2024-12-01", data_fim: "2024-12-15" },
+            { id: 3, title: "Peneira Sub-18", age: "Sub-18", location: "Pinheiros", data_inicio: "2024-11-20", data_fim: "2024-11-30" },
         ];
-
+    
         const peneirasList = document.getElementById("peneiras-list");
-        const ageFilter = document.getElementById("age-filter");
-        const locationFilter = document.getElementById("location-filter");
-        const applyFiltersButton = document.getElementById("apply-filters");
-        const modal = document.getElementById("modal");
-        const closeModalButton = document.getElementById("close-modal");
-
+    
+        // Renderiza as peneiras com as novas informações
         function renderPeneiras(filterAge = "", filterLocation = "") {
             peneirasList.innerHTML = "";
             peneiras
@@ -193,34 +182,46 @@
                 .forEach((peneira) => {
                     const vaga = document.createElement("div");
                     vaga.className = "vaga";
-                    vaga.innerHTML = `<h3>${peneira.title}</h3>
+                    vaga.innerHTML = `
+                        <h3>${peneira.title}</h3>
                         <p><strong>Idade:</strong> ${peneira.age}</p>
                         <p><strong>Local:</strong> ${peneira.location}</p>
-                        <button onclick="inscrever(${peneira.id})">Inscrever-se</button>`
-                        ;
+                        <p><strong>Início:</strong> ${peneira.data_inicio}</p>
+                        <p><strong>Término:</strong> ${peneira.data_fim}</p>
+                        <button onclick="inscrever(${peneira.id})">Inscrever-se</button>
+                    `;
                     peneirasList.appendChild(vaga);
                 });
         }
+        const cadastrarButton = document.getElementById("cadastrar-peneira");
 
-        function inscrever(id) {
-            const peneira = peneiras.find((p) => p.id === id);
-            if (peneira) {
-                modal.classList.remove("hidden");
-            }
-        }
+cadastrarButton.addEventListener("click", () => {
+    const desc = document.getElementById("desc").value;
+    const vagas = document.getElementById("vagas").value;
+    const idade = document.getElementById("idade").value;
+    const bairro = document.getElementById("bairro").value;
+    const dataInicio = document.getElementById("dataInicio").value;
+    const dataFim = document.getElementById("dataFim").value;
 
-        applyFiltersButton.addEventListener("click", () => {
-            const age = ageFilter.value;
-            const location = locationFilter.value;
-            renderPeneiras(age, location);
+    if (desc && vagas && idade && bairro && dataInicio && dataFim) {
+        peneiras.push({
+            id: peneiras.length + 1,
+            title: desc,
+            age: idade,
+            location: bairro,
+            data_inicio: dataInicio,
+            data_fim: dataFim,
         });
 
-        closeModalButton.addEventListener("click", () => {
-            modal.classList.add("hidden");
-        });
+        alert("Peneira cadastrada com sucesso!");
+        renderPeneiras(); // Atualiza a lista com a nova peneira
+    } else {
+        alert("Por favor, preencha todos os campos.");
+    }
+});
 
-        // Renderiza as peneiras inicialmente
         renderPeneiras();
     </script>
+
 </body>
 </html>

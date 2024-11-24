@@ -34,7 +34,6 @@
     justify-content: center; /* Centraliza horizontalmente os filhos */
     overflow: auto;
     background-color: #797567; /* Cor de fundo do container */
-
 }
 
 /* Estilo do formulário de cadastro */
@@ -42,13 +41,13 @@
     background-color: var(--color-light-50); /* Cor de fundo do formulário */
     display: flex; /* Utiliza Flexbox */
     flex-direction: column; /* Alinha os elementos em coluna */
-    padding: 1% 7%; /* Preenchimento interno do formulário */
+    padding: 1% 3%; /* Preenchimento interno do formulário */
     border-radius: 10px; /* Bordas arredondadas */
-    gap: 15px; /* Espaço entre os elementos internos */
+    gap: 20px; /* Espaço entre os elementos internos */
     box-shadow: 5px 5px 8px rgb(0, 0, 0, 0.336); /* Sombra do formulário */
     height: fit-content; /* Altura ajustada ao conteúdo */
     animation: dark-to-light 0.3s ease-in-out; /* Animação ao aparecer */
-    max-width: 50%;
+    max-width: 40%;
     position: absolute;
 }
 
@@ -82,20 +81,18 @@
     font-size: 25px; /* Tamanho da fonte do ícone */
 }
 
-/* Estilo para a logo */
-#social_media{
-    display: flex; /* Utiliza Flexbox */
-    justify-content: space-around; /* Espaça os ícones igualmente */
+#social_media {
+    display: flex;
+    justify-content: space-around;
 }
 
 #social_media img {
-    width: 90px;
+    width: 100px;
     transition: 0.5s linear;
 }
 
-/* Efeito de hover nas imagem da logo */
 #social_media img:hover {
-    transform: scale(1.2); /* Aumenta a imagem ao passar o mouse */
+    transform: scale(1.2);
 }
 
 /* Estilo da seção de inputs do formulário */
@@ -116,6 +113,7 @@
 .input-box label {
     font-size: 14px; /* Tamanho da fonte do rótulo */
     color: var(--color-dark-50); /* Cor do texto do rótulo */
+    padding: 0 7px 0 7px;
 }
 
 /* Estilo do campo de entrada */
@@ -150,9 +148,9 @@
 
 /* Estilo do link que leva ao login */
 #ir_login a {
-    color: var(--color-dark-50); /* Cor do texto do link */
     text-decoration: none; /* Remove o sublinhado do link */
     font-size: 14px; /* Tamanho da fonte do link */
+    color: #db7434;
 }
 
 /* Efeito de hover no link para login */
@@ -177,47 +175,6 @@
 /* Efeito de hover no botão de cadastro */
 #cadastro_button:hover{
     transform: scale(1.05); /* Aumenta o botão ao passar o mouse */
-}
-
-/* Estilos para o modo escuro do formulário */
-.dark#cadastro_form{
-    color: var(--color-light-50); /* Cor do texto no modo escuro */
-    background-color: var(--color-dark-100); /* Cor de fundo no modo escuro */
-    animation: light-to-dark 0.3s ease-in-out; /* Animação ao mudar para o modo escuro */
-}
-
-/* Estilos dos inputs e ícones no modo escuro */
-.dark#cadastro_form .input-field input,
-.dark#cadastro_form .input-field i{
-    color: var(--color-light-50); /* Cor do texto e ícones no modo escuro */
-}
-
-/* Animação para transição de cores do fundo do formulário 
-do modo claro para o modo escuro */
-@keyframes dark-to-light {
-    0%{
-        background-color:var(--color-dark-100); /* Cor de fundo inicial (modo claro) */
-    }
-    100%
-{ /* Estado final da animação */
-        background-color: var(--color-light-50); /* Cor de fundo final 
-        (modo escuro) */
-    }
-}
-
-
-/* Animação para transição de cores do fundo 
-do formulário do modo claro para o modo escuro */
-@keyframes light-to-dark {
-    0%{/* Estado inicial da animação */
-        background-color: var(--color-light-50);/* Cor de fundo inicial 
-        (modo claro) */
-    }
-
-    100%{ /* Estado final da animação */
-        background-color:var(--color-dark-100);/* Cor de fundo final 
-        (modo escuro) */
-    }
 }
 
 #div_mensagem{
