@@ -3,142 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Peneiras</title>
-    <style>
-        /* CSS */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-        .header {
-            background: #333;
-            color: #fff;
-            padding: 1rem;
-            text-align: center;
-        }
-        .container {
-            display: flex;
-            flex: 1;
-        }
-        .sidebar {
-            background: #f4f4f4;
-            width: 300px;
-            padding: 1rem;
-            border-right: 1px solid #ddd;
-        }
-        .sidebar h2 {
-            margin-top: 0;
-        }
-        .sidebar label {
-            display: block;
-            margin-top: 1rem;
-        }
-        .sidebar input,
-        .sidebar select,
-        .sidebar button {
-            width: 100%;
-            padding: 0.5rem;
-            margin-top: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .vagas {
-            flex: 1;
-            padding: 1rem;
-        }
-        .vagas h2 {
-            margin-top: 0;
-        }
-        .vaga {
-            border: 1px solid #ddd;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 5px;
-        }
-        .vaga h3 {
-            margin: 0 0 0.5rem 0;
-        }
-        .vaga button {
-            background: #28a745;
-            color: #fff;
-            border: none;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .vaga button:hover {
-            background: #218838;
-        }
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .modal.hidden {
-            display: none;
-        }
-        .modal-content {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 5px;
-            text-align: center;
-        }
-        .modal-content button {
-            background: #dc3545;
-            color: #fff;
-            border: none;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .modal-content button:hover {
-            background: #c82333;
-        }
-    </style>
+    <title>Área do Time</title>
 </head>
+<style>
+    /* CSS */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+    .header {
+        background: #333;
+        color: #fff;
+        padding: 1rem;
+        text-align: center;
+    }
+    .container {
+        display: flex;
+        flex: 1;
+    }
+    .sidebar {
+        background: #f4f4f4;
+        width: 300px;
+        padding: 1rem;
+        border-right: 1px solid #ddd;
+    }
+    .sidebar h2 {
+        margin-top: 0;
+    }
+    .sidebar label {
+        display: block;
+        margin-top: 1rem;
+    }
+    .sidebar input,
+    .sidebar select,
+    .sidebar button {
+        width: 100%;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    .vagas {
+        flex: 1;
+        padding: 1rem;
+    }
+    .vagas h2 {
+        margin-top: 0;
+    }
+    .vaga {
+        border: 1px solid #ddd;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 5px;
+    }
+    .vaga h3 {
+        margin: 0 0 0.5rem 0;
+    }
+    .vaga button {
+        background: #28a745;
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .vaga button:hover {
+        background: #218838;
+    }
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .modal.hidden {
+        display: none;
+    }
+    .modal-content {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        background: #fff;
+        padding: 2rem;
+        border-radius: 5px;
+        text-align: center;
+        border-radius: 10px;
+    }
+    .modal-content button {
+        background: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .modal-content button:hover {
+        background: #c82333;
+    }
+</style>
 <body>
-    <!-- HTML -->
     <header class="header">
-        <h1>Sistema de Peneiras</h1>
+        <h1>Área do Time</h1>
     </header>
     <div class="container">
         <!-- Sidebar de Filtros -->
         <aside class="sidebar">
-            <h2>Cadastrar Nova Peneira</h2>
-            <label for="desc">Descrição</label>
-            <input type="text" id="desc" placeholder="Descrição da Peneira">
-        
-            <label for="vagas">Quantidade de Vagas</label>
-            <input type="number" id="vagas" placeholder="Número de vagas">
-        
-            <label for="idade">Idade</label>
-            <select id="idade">
+            <h2>Filtros</h2>
+            <label for="filter-sport">Esporte</label>
+            <select id="filter-sport">
+                <option value="">Todos</option>
+                <option value="Futebol">Futebol</option>
+                <option value="Basquete">Basquete</option>
+                <option value="Vôlei">Vôlei</option>
+            </select>
+            <label for="filter-age">Idade</label>
+            <select id="filter-age">
+                <option value="">Todas</option>
                 <option value="Sub 18">Sub 18</option>
                 <option value="Sub 21">Sub 21</option>
             </select>
-        
-            <label for="bairro">Bairro</label>
-            <input type="text" id="bairro" placeholder="Bairro de São Paulo">
-        
-            <label for="dataInicio">Data de Início</label>
-            <input type="date" id="dataInicio">
-        
-            <label for="dataFim">Data de Fim</label>
-            <input type="date" id="dataFim">
-        
-            <button id="cadastrar-peneira">Cadastrar Peneira</button>
+            <label for="filter-location">Local</label>
+            <input type="text" id="filter-location" placeholder="Bairro">
+            <button onclick="applyFilters()">Aplicar Filtros</button>
+            <hr>
+            <button onclick="openModal()">Cadastrar Peneira</button>
         </aside>
-        
 
         <!-- Área de Vagas -->
         <main class="vagas">
@@ -149,35 +147,72 @@
         </main>
     </div>
 
-    <!-- Modal de Inscrição -->
+    <!-- Modal de Cadastro -->
     <div id="modal" class="modal hidden">
         <div class="modal-content">
-            <h2>Inscrição realizada com sucesso!</h2>
-            <p>Você se inscreveu nesta peneira.</p>
-            <button id="close-modal">Fechar</button>
+            <h2>Cadastrar Nova Peneira</h2>
+            <label for="desc">Descrição</label>
+            <input type="text" id="desc" placeholder="Descrição da Peneira">
+            <label for="vagas">Quantidade de Vagas</label>
+            <input type="number" id="vagas" placeholder="Número de Vagas">
+            <label for="idade">Idade</label>
+            <select id="idade">
+                <option value="Sub 18">Sub 18</option>
+                <option value="Sub 21">Sub 21</option>
+            </select>
+            <label for="bairro">Bairro</label>
+            <input type="text" id="bairro" placeholder="Bairro">
+            <label for="dataPeneira">Data da Peneira</label>
+            <input type="date" id="dataPeneira">
+            <label for="dataInicioInscricao">Data de Início da Inscrição</label>
+            <input type="date" id="dataInicioInscricao">
+            <label for="dataFimInscricao">Data de Fim da Inscrição</label>
+            <input type="date" id="dataFimInscricao">
+            <label for="esporte">Esporte</label>
+            <select id="esporte">
+                <option value="Futebol">Futebol</option>
+                <option value="Basquete">Basquete</option>
+                <option value="Vôlei">Vôlei</option>
+            </select>
+            <button onclick="cadastrarPeneira()">Confirmar</button>
+            <button onclick="closeModal()">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Modal de Detalhes -->
+    <div id="detalhes-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Detalhes da Peneira</h2>
+            <p><strong>Descrição:</strong> <span id="modal-desc"></span></p>
+            <p><strong>Vagas:</strong> <span id="modal-vagas"></span></p>
+            <p><strong>Idade:</strong> <span id="modal-idade"></span></p>
+            <p><strong>Bairro:</strong> <span id="modal-bairro"></span></p>
+            <p><strong>Data da Peneira:</strong> <span id="modal-dataPeneira"></span></p>
+            <p><strong>Data Início Inscrição:</strong> <span id="modal-dataInicioInscricao"></span></p>
+            <p><strong>Data Fim Inscrição:</strong> <span id="modal-dataFimInscricao"></span></p>
+            <p><strong>Esporte:</strong> <span id="modal-esporte"></span></p>
+            <button onclick="closeDetalhesModal()">Fechar</button>
         </div>
     </div>
 
     <script>
         // Dados Mockados
         const peneiras = [
-            { id: 1, title: "Peneira Sub 18", age: "Sub 18", location: "Vila Mariana", data_inicio: "2024/11/25", data_fim: "2024/12/10" },
-            { id: 2, title: "Peneira Sub 21", age: "Sub 21", location: "Moema", data_inicio: "2024/12/01", data_fim: "2024/12/15" },
-            { id: 3, title: "Peneira Sub 18", age: "Sub 18", location: "Pinheiros", data_inicio: "2024/11/20", data_fim: "2024/11/30" },
+            { id: 1, title: "Peneira Futebol Sub 18", age: "Sub 18", location: "Vila Mariana", esporte: "Futebol", date: "2024-11-25", startInscription: "2024-11-01", endInscription: "2024-11-20" },
+            { id: 2, title: "Peneira Basquete Sub 21", age: "Sub 21", location: "Moema", esporte: "Basquete", date: "2024-12-01", startInscription: "2024-11-10", endInscription: "2024-11-25" },
+            { id: 3, title: "Peneira Vôlei Sub 18", age: "Sub 18", location: "Pinheiros", esporte: "Vôlei", date: "2024-11-20", startInscription: "2024-11-05", endInscription: "2024-11-18" },
         ];
-    
+
         const peneirasList = document.getElementById("peneiras-list");
-    
-        // Renderiza as peneiras com as novas informações
-        function renderPeneiras(filterAge = "", filterLocation = "") {
+
+        function renderPeneiras(filters = {}) {
             peneirasList.innerHTML = "";
             peneiras
                 .filter((peneira) => {
-                    const matchesAge = !filterAge || peneira.age === filterAge;
-                    const matchesLocation =
-                        !filterLocation ||
-                        peneira.location.toLowerCase().includes(filterLocation.toLowerCase());
-                    return matchesAge && matchesLocation;
+                    const matchesSport = !filters.sport || peneira.esporte === filters.sport;
+                    const matchesAge = !filters.age || peneira.age === filters.age;
+                    const matchesLocation = !filters.location || peneira.location.toLowerCase().includes(filters.location.toLowerCase());
+                    return matchesSport && matchesAge && matchesLocation;
                 })
                 .forEach((peneira) => {
                     const vaga = document.createElement("div");
@@ -185,40 +220,77 @@
                     vaga.innerHTML = `
                         <h3>${peneira.title}</h3>
                         <p><strong>Idade:</strong> ${peneira.age}</p>
+                        <p><strong>Esporte:</strong> ${peneira.esporte}</p>
                         <p><strong>Local:</strong> ${peneira.location}</p>
-                        <p><strong>Início:</strong> ${peneira.data_inicio}</p>
-                        <p><strong>Término:</strong> ${peneira.data_fim}</p>
-                        <button onclick="inscrever(${peneira.id})">Inscrever-se</button>
+                        <p><strong>Data:</strong> ${peneira.date}</p>
+                        <button onclick="verDetalhes(${peneira.id})">Ver Detalhes</button>
                     `;
                     peneirasList.appendChild(vaga);
                 });
         }
-        const cadastrarButton = document.getElementById("cadastrar-peneira");
 
-cadastrarButton.addEventListener("click", () => {
-    const desc = document.getElementById("desc").value;
-    const vagas = document.getElementById("vagas").value;
-    const idade = document.getElementById("idade").value;
-    const bairro = document.getElementById("bairro").value;
-    const dataInicio = document.getElementById("dataInicio").value;
-    const dataFim = document.getElementById("dataFim").value;
+        function openModal() {
+            document.getElementById("modal").classList.remove("hidden");
+        }
 
-    if (desc && vagas && idade && bairro && dataInicio && dataFim) {
-        peneiras.push({
-            id: peneiras.length + 1,
-            title: desc,
-            age: idade,
-            location: bairro,
-            data_inicio: dataInicio,
-            data_fim: dataFim,
-        });
+        function closeModal() {
+            document.getElementById("modal").classList.add("hidden");
+        }
 
-        alert("Peneira cadastrada com sucesso!");
-        renderPeneiras(); // Atualiza a lista com a nova peneira
-    } else {
-        alert("Por favor, preencha todos os campos.");
-    }
-});
+        function cadastrarPeneira() {
+            const desc = document.getElementById("desc").value;
+            const vagas = document.getElementById("vagas").value;
+            const idade = document.getElementById("idade").value;
+            const bairro = document.getElementById("bairro").value;
+            const dataPeneira = document.getElementById("dataPeneira").value;
+            const dataInicioInscricao = document.getElementById("dataInicioInscricao").value;
+            const dataFimInscricao = document.getElementById("dataFimInscricao").value;
+            const esporte = document.getElementById("esporte").value;
+
+            if (desc && vagas && idade && bairro && dataPeneira && dataInicioInscricao && dataFimInscricao && esporte) {
+                peneiras.push({
+                    id: peneiras.length + 1,
+                    title: desc,
+                    age: idade,
+                    location: bairro,
+                    esporte,
+                    date: dataPeneira,
+                    startInscription: dataInicioInscricao,
+                    endInscription: dataFimInscricao,
+                });
+
+                alert("Peneira cadastrada com sucesso!");
+                renderPeneiras(); // Atualiza a lista com a nova peneira
+                closeModal();
+            } else {
+                alert("Por favor, preencha todos os campos.");
+            }
+        }
+
+        function verDetalhes(id) {
+            const peneira = peneiras.find(p => p.id === id);
+            document.getElementById("modal-desc").textContent = peneira.title;
+            document.getElementById("modal-vagas").textContent = peneira.vagas;
+            document.getElementById("modal-idade").textContent = peneira.age;
+            document.getElementById("modal-bairro").textContent = peneira.location;
+            document.getElementById("modal-dataPeneira").textContent = peneira.date;
+            document.getElementById("modal-dataInicioInscricao").textContent = peneira.startInscription;
+            document.getElementById("modal-dataFimInscricao").textContent = peneira.endInscription;
+            document.getElementById("modal-esporte").textContent = peneira.esporte;
+            document.getElementById("detalhes-modal").classList.remove("hidden");
+        }
+
+        function closeDetalhesModal() {
+            document.getElementById("detalhes-modal").classList.add("hidden");
+        }
+
+        function applyFilters() {
+            const sport = document.getElementById("filter-sport").value;
+            const age = document.getElementById("filter-age").value;
+            const location = document.getElementById("filter-location").value;
+
+            renderPeneiras({ sport, age, location });
+        }
 
         renderPeneiras();
     </script>
