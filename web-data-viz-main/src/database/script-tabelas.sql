@@ -19,7 +19,7 @@ CREATE TABLE Usuario (
 );
 
 CREATE TABLE Peneiras (
-    idPeneiras INT PRIMARY KEY,
+    idPeneiras INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(45) NOT NULL,
     qtd_vagas FLOAT,
     idade VARCHAR(45),

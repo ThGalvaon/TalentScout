@@ -49,7 +49,6 @@ var peneirasModel = require("../models/peneirasModel");
 // }
 
 function cadastrarPeneira(req, res) {
-    var id = req.body.idServer;
     var titulo = req.body.tituloServer;
     var qtd_vagas = req.body.vagasServer;
     var idade = req.body.idadeServer;
@@ -59,9 +58,8 @@ function cadastrarPeneira(req, res) {
     var data_inicio = req.body.dataInicioInscricaoServer;
     var data_fim = req.body.dataFimInscricaoVarServer;
     // Faça as validações dos valores
-    if (id == undefined) {
-        res.status(400).send("Seu id está undefined!");
-    } else if (titulo == undefined) {
+
+     if (titulo == undefined) {
         res.status(400).send("Seu titulo está undefined!");
     } else if (qtd_vagas == undefined) {
         res.status(400).send("Sua quantidade de vagas está undefined!");
@@ -79,7 +77,7 @@ function cadastrarPeneira(req, res) {
         res.status(400).send("Sua data para o fim da inscrição está undefined!");
     }
         else{
-        peneirasModel.cadastrarPeneira(id, titulo, qtd_vagas, idade, bairro, esporte, data_peneira, data_inicio, data_fim)
+        peneirasModel.cadastrarPeneira(titulo, qtd_vagas, idade, bairro, esporte, data_peneira, data_inicio, data_fim)
             .then(
                 function (resultado) {
                     res.json(resultado);
