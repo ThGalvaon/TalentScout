@@ -18,8 +18,17 @@ function cadastrarPeneira(id, titulo, qtd_vagas, idade, bairro, esporte, data_pe
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+function carregarPeneira() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function carregarPeneira():");
+    
+    var instrucaoSql = `
+        SELECT titulo, qtd_vagas, idade, bairro, esporte, data_peneira, data_inicio, data_fim FROM peneiras;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
-    // autenticar,
+    carregarPeneira,
     cadastrarPeneira
 };

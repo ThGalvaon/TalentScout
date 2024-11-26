@@ -8,6 +8,10 @@ router.post("/cadastrarPeneira", function (req, res) {
     peneirasController.cadastrarPeneira(req, res);
 })
 
+router.post("/carregarPeneira", function (req, res) {
+    peneirasController.carregarPeneira(req, res);
+})
+
 // router.post("/autenticar", function (req, res) {
 //     peneirasController.autenticar(req, res);
 // });
