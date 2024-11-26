@@ -151,8 +151,8 @@
     <div id="modal" class="modal hidden">
         <div class="modal-content">
             <h2>Cadastrar Nova Peneira</h2>
-            <label for="desc">Descrição</label>
-            <input type="text" id="desc" placeholder="Descrição da Peneira">
+            <label for="titulo">Título</label>
+            <input type="text" id="titulo" placeholder="Título da Peneira">
             <label for="vagas">Quantidade de Vagas</label>
             <input type="number" id="vagas" placeholder="Número de Vagas">
             <label for="idade">Idade</label>
@@ -183,7 +183,7 @@
     <div id="detalhes-modal" class="modal hidden">
         <div class="modal-content">
             <h2>Detalhes da Peneira</h2>
-            <p><strong>Descrição:</strong> <span id="modal-desc"></span></p>
+            <p><strong>Título:</strong> <span id="modal-titulo"></span></p>
             <p><strong>Vagas:</strong> <span id="modal-vagas"></span></p>
             <p><strong>Idade:</strong> <span id="modal-idade"></span></p>
             <p><strong>Bairro:</strong> <span id="modal-bairro"></span></p>
@@ -238,30 +238,61 @@
         }
 
         function cadastrarPeneira() {
-            const desc = document.getElementById("desc").value;
-            const vagas = document.getElementById("vagas").value;
-            const idade = document.getElementById("idade").value;
-            const bairro = document.getElementById("bairro").value;
-            const dataPeneira = document.getElementById("dataPeneira").value;
-            const dataInicioInscricao = document.getElementById("dataInicioInscricao").value;
-            const dataFimInscricao = document.getElementById("dataFimInscricao").value;
-            const esporte = document.getElementById("esporte").value;
+            const tituloVar = document.getElementById("titulo").value;
+            const vagasVar = document.getElementById("vagas").value;
+            const idadeVar = document.getElementById("idade").value;
+            const bairroVar = document.getElementById("bairro").value;
+            const dataPeneiraVar = document.getElementById("dataPeneira").value;
+            const dataInicioInscricaoVar = document.getElementById("dataInicioInscricao").value;
+            const dataFimInscricaoVar = document.getElementById("dataFimInscricao").value;
+            const esporteVar = document.getElementById("esporte").value;
 
-            if (desc && vagas && idade && bairro && dataPeneira && dataInicioInscricao && dataFimInscricao && esporte) {
+            if (tituloVar && vagasVar && idadeVar && bairroVar && dataPeneiraVar && dataInicioInscricaoVar && dataFimInscricaoVar && esporteVar) {
                 peneiras.push({
                     id: peneiras.length + 1,
-                    title: desc,
-                    age: idade,
-                    location: bairro,
-                    esporte,
-                    date: dataPeneira,
-                    startInscription: dataInicioInscricao,
-                    endInscription: dataFimInscricao,
+                    title: tituloVar,
+                    vagas: vagasVar,
+                    age: idadeVar,
+                    location: bairroVar,
+                    esporte: esporteVar,
+                    date: dataPeneiraVar,
+                    startInscription: dataInicioInscricaoVar,
+                    endInscription: dataFimInscricaoVar,
                 });
-
-                alert("Peneira cadastrada com sucesso!");
-                renderPeneiras(); // Atualiza a lista com a nova peneira
-                closeModal();
+                fetch("/peneiras/cadastrar", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    idServer: peneiras.length + 1,
+                    tituloServer: tituloVar,
+                    vagasServer: vagasVar,
+                    idadeServer: idadeVar,
+                    bairroServer: bairroVar,
+                    esporteServer: esporteVar,
+                    dataPeneiraServer: dataPeneiraVar,
+                    dataInicioInscricaoServer: dataInicioInscricaoVar,
+                    dataFimInscricaoVarServer: dataFimInscricaoVar,
+                  }),
+                })
+                  .then(function (resposta) {
+                    if (resposta.ok) {
+                      alert("Cadastro realizado com sucesso!");
+                      setTimeout(() => {
+                        renderPeneiras();
+                        closeModal();
+                      }, 2000);
+                    } else {
+                      throw new Error("Houve um erro ao tentar realizar o cadastro da peneira.");
+                    }
+                  })
+                  .catch(function (erro) {
+                    console.error("Erro no cadastro das peneiras:", erro);
+                    alert("Houve um erro no cadastro das peneiras. Tente novamente mais tarde.");
+                  });
+              
+                return false;
             } else {
                 alert("Por favor, preencha todos os campos.");
             }
@@ -269,7 +300,7 @@
 
         function verDetalhes(id) {
             const peneira = peneiras.find(p => p.id === id);
-            document.getElementById("modal-desc").textContent = peneira.title;
+            document.getElementById("modal-titulo").textContent = peneira.title;
             document.getElementById("modal-vagas").textContent = peneira.vagas;
             document.getElementById("modal-idade").textContent = peneira.age;
             document.getElementById("modal-bairro").textContent = peneira.location;
@@ -293,36 +324,6 @@
         }
 
         renderPeneiras();
-
-        // Enviar os dados via fetch
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-      }),
-    })
-      .then(function (resposta) {
-        if (resposta.ok) {
-          alert("Cadastro realizado com sucesso! Redirecionando para a tela de login...");
-          setTimeout(() => {
-            window.location = "login.html";
-          }, 2000);
-        } else {
-          throw new Error("Houve um erro ao tentar realizar o cadastro.");
-        }
-      })
-      .catch(function (erro) {
-        console.error("Erro no cadastro:", erro);
-        alert("Houve um erro no cadastro. Tente novamente mais tarde.");
-      });
-
-    return false;
-
     </script>
 
 </body>

@@ -20,13 +20,16 @@ CREATE TABLE Usuario (
 
 CREATE TABLE Peneiras (
     idPeneiras INT AUTO_INCREMENT PRIMARY KEY,
-    descricao VARCHAR(45) NOT NULL,
-    quantidade_vagas VARCHAR(45),
-    idade_vaga VARCHAR(45),
-    data_inicio VARCHAR(45),
-    data_fim VARCHAR(45),
-    fkTime INT NOT NULL,
-    FOREIGN KEY (fkTime) REFERENCES Time(idTime)
+    titulo VARCHAR(45) NOT NULL,
+    qtd_vagas FLOAT,
+    idade FLOAT,
+    bairro VARCHAR(50),
+    esporte VARCHAR(45),
+    data_peneira DATE,
+    data_inicio DATE,
+    data_fim DATE
+    /*fkTime INT NOT NULL,
+    FOREIGN KEY (fkTime) REFERENCES Time(idTime)*/
 );
 
 CREATE TABLE Inscricoes (
@@ -40,4 +43,6 @@ CREATE TABLE Inscricoes (
     FOREIGN KEY (fkTime) REFERENCES Time(idTime)
 );
 
-SELECT * FROM usuarios;
+DESC usuario;
+
+SELECT * FROM usuario;
