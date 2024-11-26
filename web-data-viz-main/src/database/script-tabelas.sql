@@ -19,10 +19,10 @@ CREATE TABLE Usuario (
 );
 
 CREATE TABLE Peneiras (
-    idPeneiras INT AUTO_INCREMENT PRIMARY KEY,
+    idPeneiras INT PRIMARY KEY,
     titulo VARCHAR(45) NOT NULL,
     qtd_vagas FLOAT,
-    idade FLOAT,
+    idade VARCHAR(45),
     bairro VARCHAR(50),
     esporte VARCHAR(45),
     data_peneira DATE,
@@ -43,6 +43,12 @@ CREATE TABLE Inscricoes (
     FOREIGN KEY (fkTime) REFERENCES Time(idTime)
 );
 
+drop table peneiras;
+
 DESC usuario;
 
+DESC peneiras;
+
 SELECT * FROM usuario;
+
+SELECT * FROM peneiras;
