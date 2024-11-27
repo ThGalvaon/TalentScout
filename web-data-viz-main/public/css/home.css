@@ -91,7 +91,7 @@ a{
 .hero h1{
     font-size: 90px;
 }
-.btn.cta{
+.btn-cta{
     margin-top: 30px;
     border-radius: 10px;
     background: #ff4500;
@@ -99,6 +99,7 @@ a{
     font-size: 20px;
     width: 60vh;
     height: 5vh;
+    
 }
 .info {
     padding: 8px;
@@ -201,4 +202,10 @@ footer .btn-floating:hover {
 }
 .p-4{
     padding: 1% 0% 0% 0% !important;
+}
+.box-textos{
+    width: 80vw;
+}
+li{
+    margin-top: 0.8vw;
 }
