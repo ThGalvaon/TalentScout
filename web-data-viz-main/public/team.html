@@ -109,7 +109,7 @@
     </header>
     <div class="container">
         <!-- Área de Vagas -->
-        <main class="vagas">
+        <main class="vagas" id="main_div">
             <h2>Peneiras Disponíveis</h2>
             <div id="peneiras-list">
                 <!-- Lista de peneiras será gerada dinamicamente -->
@@ -173,6 +173,8 @@
 
         const peneirasList = document.getElementById("peneiras-list");
 
+        var mainDiv = document.getElementById("main_div");
+
         function openModal() {
             document.getElementById("modal").classList.remove("hidden");
         }
@@ -231,6 +233,8 @@
         }
 
         function carregarPeneira(){
+            peneirasList.innerHTML = "";
+
             fetch("/peneiras/carregarPeneira", {
                   method: "GET",
                   headers: {
@@ -241,12 +245,14 @@
                   .then(valores => {
                     console.log(valores)
                     peneira = valores
-                    peneirasList.innerHTML = "";
+                    if(valores.length == 0){
+                        peneirasList.innerHTML = "Nenhuma Peneira Cadastrada"
+                    }else
                     valores.forEach((valor) =>{      
                         const vaga = document.createElement("div");
                         vaga.className = "vaga";   
                         vaga.innerHTML += `
-                        <h3>${valor.titulo}</h3>
+                        <h2>${valor.titulo}</h2>
                         <p><strong>Quantidade de Vagas:</strong> ${valor.qtd_vagas}</p>
                         <p><strong>Idade:</strong> ${valor.idade}</p>
                         <p><strong>Esporte:</strong> ${valor.esporte}</p>
@@ -255,6 +261,8 @@
                         <p><strong>Data do Inicio da Inscrição:</strong> ${valor.data_inicio}</p>
                         <p><strong>Data do Fim da Inscrição:</strong> ${valor.data_fim}</p>
                         <p><strong>Esporte:</strong> ${valor.esporte}</p>
+                        <button onclick="excluirPeneira(${valor.idPeneiras})">Excluir</button>
+
                     `;
                         peneirasList.appendChild(vaga);
                     })
@@ -264,6 +272,29 @@
                     alert("Houve um erro no cadastro das peneiras. Tente novamente mais tarde.");
                   });
         }
+        function excluirPeneira(idPeneira) {
+            console.log("ID enviado para exclusão:", idPeneira);
+            if (confirm("Tem certeza de que deseja excluir esta peneira?")) {
+            fetch(`/peneiras/excluirPeneira/${idPeneira}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                  }
+            })
+                .then((resposta) => {
+                   if (resposta.ok) {
+                       alert("Peneira excluída com sucesso!");
+                       carregarPeneira(); // Atualiza a lista de peneiras
+                   } else {
+                       alert("Erro ao excluir a peneira. Tente novamente.");
+                   }
+               })
+               .catch((erro) => {
+                   console.error("Erro ao excluir peneira:", erro);
+                   alert("Erro ao excluir a peneira. Tente novamente.");
+               });
+    }
+}
     </script>
 
 </body>

@@ -10,7 +10,7 @@ CREATE TABLE Usuario (
 );
 
  CREATE TABLE Time (
-    idTime INT AUTO_INCREMENT PRIMARY KEY,
+    idTime INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     nome_time VARCHAR(45) NOT NULL,
     email_time VARCHAR(45) NOT NULL UNIQUE,
     telefone_time VARCHAR(45),
@@ -52,3 +52,5 @@ DESC peneiras;
 SELECT * FROM usuario;
 
 SELECT * FROM peneiras;
+
+INSERT INTO peneiras (titulo, qtd_vagas, idade, bairro, esporte, data_peneira, data_inicio, data_fim) VALUES ('Basquete 3x3', 1, 'Sub 18', 'Vila dos Remédios', 'Basquete', '2024-11-28', '2024-11-20', '2024-11-26')

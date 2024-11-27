@@ -12,6 +12,11 @@ router.get("/carregarPeneira", function (req, res) {
     peneirasController.carregarPeneira(req, res);
 })
 
+router.delete("/excluirPeneira/:idPeneiras", function (req, res) {
+    peneirasController.excluirPeneira(req, res);
+});
+
+
 // router.post("/autenticar", function (req, res) {
 //     peneirasController.autenticar(req, res);
 // });
