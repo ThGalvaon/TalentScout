@@ -56,7 +56,7 @@
         margin: 0 0 0.5rem 0;
     }
     .vaga button {
-        background: #28a745;
+        background: #f33232;
         color: #fff;
         border: none;
         padding: 0.5rem 1rem;
@@ -64,7 +64,7 @@
         border-radius: 5px;
     }
     .vaga button:hover {
-        background: #218838;
+        background: #ff0000;
     }
     .modal {
         position: fixed;
@@ -100,6 +100,13 @@
     }
     .modal-content button:hover {
         background: #c82333;
+    }
+    .btn-confirm{
+        background: #28a745 !important;
+        color: aliceblue;
+    }
+    .btn-confirm:hover{
+        background: #04bd2f !important;
     }
 </style> 
 <body onload="carregarPeneira()">
@@ -144,8 +151,8 @@
                 <option value="Basquete">Basquete</option>
                 <option value="Vôlei">Vôlei</option>
             </select>
-            <button onclick="cadastrarPeneira()">Confirmar</button>
-            <button onclick="closeModal()">Fechar</button>
+            <button onclick="cadastrarPeneira()" class="btn-confirm">Confirmar</button>
+            <button onclick="closeModal()" class="btn-cancel">Cancelar</button>
         </div>
     </div>
 
@@ -248,7 +255,7 @@
                     if(valores.length == 0){
                         peneirasList.innerHTML = "Nenhuma Peneira Cadastrada"
                     }else
-                    valores.forEach((valor) =>{      
+                    valores.forEach((valor) =>{
                         const vaga = document.createElement("div");
                         vaga.className = "vaga";   
                         vaga.innerHTML += `
