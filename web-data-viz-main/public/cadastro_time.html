@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./css/cadastro_time.css">
+  <script src="./js/sessao.js"></script>
+  <link rel="icon" href="./assets/icon/favicon2.png">
+  <title>Cadastro</title>
+</head>
+<body>
+  <main id="container">
+    <div id="cadastro_form">
+      <div id="form_header">
+        <h1>Cadastro</h1>
+      </div>
+      <div id="social_media">
+        <!-- Seção para redes sociais, com id "social_media" -->
+
+        <a href="index.html">
+            <img src="assets/imgs/logo.png" alt="Talent Scout">
+            <!-- Link com a imagem do logo, que ainda não leva a nenhuma página -->
+        </a>
+      </div>
+      <div class="alerta_erro">
+        <div class="card_erro" id="cardErro">
+          <span id="mensagem_erro"></span>
+        </div>
+      </div>
+        <div class="inputs">
+          <div class="input-box">
+            <label for="username">
+              Nome do Usuário
+              <div class="input-field">
+                <input type="text" id="username" required placeholder="Digite seu nome">
+              </div>
+            </label>
+          </div>
+          <div class="input-box">
+            <label for="telephone">
+              Telefone
+              <div class="input-field">
+                <input type="text" id="telephone" required placeholder="Digite o Telefone">
+              </div>
+            </label>
+          </div>
+
+          <div class="input-box">
+            <label for="logradouro">
+              Logradouro
+              <div class="input-field">
+                <input type="text" id="logradouro" required placeholder="Digite o Logradouro">
+              </div>
+            </label>
+          </div>
+          
+          <div class="input-box">
+            <label for="num_endereço">
+              Numero Logradouro
+              <div class="input-field">
+                <input type="text" id="num_endereco" required placeholder="Digite o Numero do Logradouro">
+              </div>
+            </label>
+          </div>
+          <div class="input-box">
+            <label for="email">
+              Email
+              <div class="input-field">
+                <input type="email" id="email" required placeholder="Digite seu email">
+              </div>
+            </label>
+          </div>
+          <div class="input-box">
+            <label for="password">
+              Senha
+              <div class="input-field">
+                <input type="password" id="password" required placeholder="Digite sua senha">
+              </div>
+            </label>
+          </div>
+          
+          <div class="input-box">
+            <label for="confirm_password">
+              Confirmar Senha
+              <div class="input-field">
+                <input type="password" id="confirm_password" required placeholder="Confirme sua senha">
+              </div>
+            </label>
+          </div>
+
+          <div id="ir_login">
+            <a href="login_time.html">
+              Já possuo Login
+            </a>
+          </div>
+          <div id="div_aguardar" class="loading-div">
+            <img src="./assets/circle-loading.gif" id="loading-gif" />
+          </div>
+        </div>
+
+        <button id="cadastro_button" onclick="validarCadastro()">Cadastrar</button>
+      </div>
+    </div>
+  </main>
+
+  <script type="text/javascript" src="./js/cadastro_time.js"></script>
+</body>
+</html>

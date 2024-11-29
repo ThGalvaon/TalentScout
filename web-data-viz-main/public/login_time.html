@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./css/login_time.css">
+    <link rel="icon" href="./assets/icon/favicon2.png">
+    <script src="./js/sessao.js"></script>
+    <title>Login</title>
+</head>
+<body>
+    <main id="container">
+        <div id="login_form">
+            <div class="alerta_erro">
+                <div class="card_erro" id="cardErro">
+                    <span id="mensagem_erro"></span>
+                </div>
+            </div>
+            <div id="form_header">
+                <h1>Login</h1>
+            </div>
+            <div id="social_media">
+                <a href="index.html">
+                    <img src="assets/imgs/logo.png" alt="Talent Scout">
+                </a>
+            </div>
+            <div id="inputs">
+                <div class="input-box">
+                    <label for="email">
+                        Email
+                        <div class="input-field">
+                            <input type="email" id="email" placeholder="EX: xpto@gmail.com">
+                        </div>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <label for="password">
+                        Senha
+                        <div class="input-field">
+                            <input type="password" id="password" placeholder="EX: Xpto@123">
+                        </div>
+                    </label>
+                    <div id="ir_cadastro">
+                      <a href="cadastro_time.html">
+                            Nao possui cadastro?
+                        </a>
+                    </div> 
+                </div>
+            </div>
+            <div id="div_aguardar" class="loading-div">
+                <img src="./assets/circle-loading.gif" id="loading-gif">
+            </div>
+            <button type="submit" id="login_button" onclick="entrar()">
+                <a>Login</a>
+            </button>
+            
+        </div>
+    </main>
+
+    <script type="text/javascript" src="./js/login_time.js"></script>     
+</body>
+</html>

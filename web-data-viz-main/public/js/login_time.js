@@ -1,13 +1,13 @@
 function entrar() {
-    // aguardar();
+    aguardar();
 
     var emailVar = email.value;
     var senhaVar = password.value;
 
     if (emailVar == "" || senhaVar == "") {
         cardErro.style.display = "block"
-        mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-        // finalizarAguardar();
+        mensagem_erro.innerHTML = "Preencha todos os campos";
+        finalizarAguardar();
         return false;
     }
     else {
@@ -17,7 +17,7 @@ function entrar() {
     console.log("FORM LOGIN: ", emailVar);
     console.log("FORM SENHA: ", senhaVar);
 
-    fetch("/usuarios/autenticar", {
+    fetch("/times/autenticar", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -35,12 +35,13 @@ function entrar() {
             resposta.json().then(json => {
                 console.log(json);
                 console.log(JSON.stringify(json));
-                sessionStorage.EMAIL_USUARIO = json.email;
-                sessionStorage.NOME_USUARIO = json.nome;
-                sessionStorage.ID_USUARIO = json.id;
+                sessionStorage.EMAIL_TIME= json.email;
+                sessionStorage.NOME_TIME= json.nome;
+                sessionStorage.ID_TIME= json.id;
+                console.log(json)
 
                 setTimeout(function () {
-                    window.location = "/user.html";
+                    window.location = "/team.html";
                 }, 1000); // apenas para exibir o loading
 
             });
@@ -51,7 +52,7 @@ function entrar() {
 
             resposta.text().then(texto => {
                 console.error(texto);
-                // finalizarAguardar(texto);
+                finalizarAguardar(texto);
             });
         }
     }).catch(function (erro) {

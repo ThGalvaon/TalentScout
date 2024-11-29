@@ -1,7 +1,7 @@
 // sessão
 function validarSessao() {
-    var email = sessionStorage.EMAIL_USUARIO;
-    var nome = sessionStorage.NOME_USUARIO;
+    var email = sessionStorage.EMAIL_TIME;
+    var nome = sessionStorage.NOME_TIME;
     
     console.log(nome)
     console.log(email)
@@ -11,13 +11,13 @@ function validarSessao() {
     if (email != null && nome != null) {
         titulo.innerHTML = nome;
     } else {
-        window.location = "../login.html";
+        window.location = "../login_time.html";
     }
 }
 
 function limparSessao() {
     sessionStorage.clear();
-    window.location = "../login.html";
+    window.location = "../login_time.html";
 }
 
 // carregamento (loading)

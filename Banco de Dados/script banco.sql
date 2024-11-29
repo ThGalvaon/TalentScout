@@ -9,10 +9,6 @@ CREATE TABLE Usuario (
     senha VARCHAR(45) NOT NULL
 );
 
-create TABLE aquario (
-fk_empresa INT
-
-);
  CREATE TABLE Time (
     idTime INT AUTO_INCREMENT PRIMARY KEY,
     nome_time VARCHAR(45) NOT NULL,
@@ -24,12 +20,12 @@ fk_empresa INT
 
 CREATE TABLE Peneiras (
     idPeneiras INT AUTO_INCREMENT PRIMARY KEY,
-    descricao VARCHAR(45) NOT NULL,
+    titulo VARCHAR(45) NOT NULL,
     quantidade_vagas VARCHAR(45),
     idade_vaga VARCHAR(45),
     data_inicio VARCHAR(45),
     data_fim VARCHAR(45),
-    fkTime INT NOT NULL,
+    /*fkTime INT NOT NULL,*/
     FOREIGN KEY (fkTime) REFERENCES Time(idTime)
 );
 
