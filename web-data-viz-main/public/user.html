@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Área do Usuário</title>
+    <script src="../js/sessao.js"></script>
     <style>
         /* CSS */
         body {
@@ -119,25 +120,30 @@
     </style>
 </head>
 
-<body>
+<body onload="carregarPeneira(), validarSessao()">
     <header class="header">
-        <h1>Área do Usuário</h1>
+        <h1 id="titulo_header">Área do Usuário</h1>
     </header>
     <div class="container">
         <!-- Filtros -->
         <div class="filters">
-            <select id="filter-age">
+            <select id="filter-idade">
                 <option value="">Todas as idades</option>
                 <option value="Sub 18">Sub 18</option>
                 <option value="Sub 21">Sub 21</option>
             </select>
-            <select id="filter-sport">
+            <select id="filter-genero">
+                <option value="">Todas os gêneros</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+            </select>
+            <select id="filter-esporte">
                 <option value="">Todos os esportes</option>
                 <option value="Basquete">Basquete</option>
                 <option value="Futebol">Futebol</option>
                 <option value="Volei">Volei</option>
             </select>
-            <button onclick="applyFilters()">Filtrar</button>
+            <button onclick="aplicarFiltros()">Filtrar</button>
         </div>
 
         <h2>Peneiras Disponíveis</h2>
@@ -149,20 +155,23 @@
     <!-- Modal de Detalhes -->
     <div id="modal" class="modal hidden">
         <div class="modal-content">
-            <h2>Detalhes da Peneira</h2>
-            <p><strong>Time:</strong> <span id="time"></span></p>
-            <p><strong>Título:</strong> <span id="titulo-peneira"></span></p>
-            <p><strong>Faixa Etária:</strong> <span id="faixa-etaria"></span></p>
-            <p><strong>Local:</strong> <span id="local"></span></p>
-            <p><strong>Fim das Inscrições:</strong> <span id="fim-inscricao"></span></p>
-            <p><strong>Início das Inscrições:</strong> <span id="inicio-inscricao"></span></p>
-            <p><strong>Data da Peneira:</strong> <span id="data-peneira"></span></p>
-            <button id="confirm-button">Confirmar Inscrição</button>
+            <div class="modal-content">
+                <h2>Detalhes da Peneira</h2>
+                <p><strong>Título:</strong> <span id="modal-titulo"></span></p>
+                <p><strong>Time:</strong> <span id="modal-time"></span></p>
+                <p><strong>Vagas:</strong> <span id="modal-vagas"></span></p>
+                <p><strong>Idade:</strong> <span id="modal-idade"></span></p>
+                <p><strong>Gênero da Vaga:</strong> <span id="modal-genero"></span></p>
+                <p><strong>Local:</strong> <span id="modal-local"></span></p>
+                <p><strong>Data da Peneira:</strong> <span id="modal-dataPeneira"></span></p>
+                <p><strong>Data Início Inscrição:</strong> <span id="modal-dataInicioInscricao"></span></p>
+                <p><strong>Data Fim Inscrição:</strong> <span id="modal-dataFimInscricao"></span></p>
+                <p><strong>Esporte:</strong> <span id="modal-esporte"></span></p>
             <button id="close-modal">Fechar</button>
+            <button onclick="inscreverUsuario(idPeneiras, idTime)" class="confirm-button">Confirmar Inscrição</button>
         </div>
     </div>
 
-    <!-- Modal de Confirmação -->
     <div id="success-modal" class="modal hidden">
         <div class="modal-content">
             <h2>Inscrição Realizada!</h2>
@@ -172,41 +181,11 @@
     </div>
 
     <script>
-        const peneiras = [
-            {
-                id: 1,
-                title: "Basquete 3x3",
-                sport: "Basquete",
-                age: "Sub 18",
-                location: "São Paulo",
-                startDate: "2024-11-15",
-                endDate: "2024-12-01",
-                tryoutDate: "2024-12-10",
-                team: "São Paulo FC"
-            },
-            {
-                id: 2,
-                title: "Basquete 5x5",
-                sport: "Basquete",
-                age: "Sub 21",
-                location: "Rio de Janeiro",
-                startDate: "2024-11-10",
-                endDate: "2024-11-30",
-                tryoutDate: "2024-12-05",
-                team: "Flamengo"
-            },
-            {
-                id: 3,
-                title: "Futebol Sub 18",
-                sport: "Futebol",
-                age: "Sub 18",
-                location: "Belo Horizonte",
-                startDate: "2024-11-20",
-                endDate: "2024-12-15",
-                tryoutDate: "2024-12-20",
-                team: "Cruzeiro"
-            }
-        ];
+        const peneiras = []
+        const valores = []
+
+        var idPeneiras
+        var idTime
 
         const peneirasList = document.getElementById("peneiras-list");
         const modal = document.getElementById("modal");
@@ -215,78 +194,179 @@
         const confirmButton = document.getElementById("confirm-button");
         const closeSuccessModalButton = document.getElementById("close-success-modal");
 
-        const tituloPeneira = document.getElementById("titulo-peneira");
-        const faixaEtaria = document.getElementById("faixa-etaria");
-        const local = document.getElementById("local");
-        const fimInscricao = document.getElementById("fim-inscricao");
-        const inicioInscricao = document.getElementById("inicio-inscricao");
-        const dataPeneira = document.getElementById("data-peneira");
-        const time = document.getElementById("time");
-
-        const filterAge = document.getElementById("filter-age");
-        const filterSport = document.getElementById("filter-sport");
+        const tituloPeneira = document.getElementById("modal-titulo")
+        const timePeneira = document.getElementById("modal-time");
+        const vagasPeneira = document.getElementById("modal-vagas")
+        const faixaEtaria = document.getElementById("modal-idade")
+        const generoPeneira = document.getElementById("modal-genero")
+        const localPeneira = document.getElementById("modal-local");
+        const esportePeneira = document.getElementById("modal-esporte");
+        const fimInscricao = document.getElementById("modal-dataFimInscricao");
+        const inicioInscricao = document.getElementById("modal-dataInicioInscricao");
+        const dataPeneira = document.getElementById("modal-dataPeneira");
 
         function formatDate(dateStr) {
             const [year, month, day] = dateStr.split("-");
             return `${day}/${month}/${year}`;
         }
-
-        function renderPeneiras(filteredPeneiras = peneiras) {
+        function carregarPeneira(){
             peneirasList.innerHTML = "";
-            filteredPeneiras.forEach((peneira) => {
-                const vaga = document.createElement("div");
-                vaga.className = "vaga";
-                vaga.innerHTML = `<h3>${peneira.title}</h3>
-                    <p><strong>Esporte:</strong> ${peneira.sport}</p>
-                    <p><strong>Faixa Etária:</strong> ${peneira.age}</p>
-                    <p><strong>Data da Peneira:</strong> ${formatDate(peneira.tryoutDate)}</p>
-                    <p><strong>Fim das Inscrições:</strong> ${formatDate(peneira.endDate)}</p>
-                    <button onclick="inscrever(${peneira.id})">Inscrever-se</button>`;
-                peneirasList.appendChild(vaga);
-            });
+            fetch("/peneiras/carregarPeneira", {
+                  method: "GET",
+                  headers: {
+                    "Content-Type": "application/json",
+                  }
+                })
+                  .then(resposta => resposta.json())
+                  .then(valores => {
+                    console.log(valores)
+                    peneira = valores
+                    if(valores.length == 0){
+                        peneirasList.innerHTML = "Nenhuma Peneira Cadastrada"
+                    }else
+                    valores.forEach((valor) =>{
+                        const vaga = document.createElement("div");
+                        vaga.className = "vaga";   
+                        vaga.innerHTML += `
+                        <h2>${valor.titulo}</h2>
+                        <p><strong>Idade:</strong> ${valor.idade}</p>
+                        <p><strong>Gênero da Vaga:</strong> ${valor.genero}</p>
+                        <p><strong>Esporte:</strong> ${valor.esporte}</p>
+                        <p><strong>Local:</strong> ${valor.endereco}</p>
+                        <p><strong>Data da Peneira:</strong> ${formatDate(valor.data_peneira)}</p>
+                        <p><strong>Data do Fim da Inscrição:</strong> ${formatDate(valor.data_fim)}</p>
+                        <button onclick="carregarModal(${valor.idPeneiras})">Inscrever-se</button>
+                    `;
+                        peneirasList.appendChild(vaga);
+                    })
+                  })
+                  .catch(function (erro) {
+                    console.error("Erro ao carras as peneiras:", erro);
+                    alert("Houve um erro ao caregar as peneiras. Tente novamente mais tarde.");
+                  });
         }
 
-        function applyFilters() {
-            const ageFilter = filterAge.value;
-            const sportFilter = filterSport.value;
+        function aplicarFiltros() {
+            const filtroIdade = document.getElementById("filter-idade").value;
+            const filtroEsporte = document.getElementById("filter-esporte").value;
+            const filtroGenero = document.getElementById("filter-genero").value;
 
-            const filtered = peneiras.filter((peneira) => {
-                return (!ageFilter || peneira.age === ageFilter) &&
-                       (!sportFilter || peneira.sport === sportFilter);
-            });
+            const filtros = {
+                idade: filtroIdade || null,
+                esporte: filtroEsporte || null,
+                genero: filtroGenero || null
+            };
+            console.log("Filtros selecionados:", filtros);
+            peneirasList.innerHTML = "";
 
-            renderPeneiras(filtered);
-        }
+            fetch("/peneiras/aplicarFiltros", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(filtros),
+            })
+                .then((resposta) => resposta.json())
+                .then((valores) => {
+                    console.log(valores);
+                    if (valores.length === 0) {
+                        peneirasList.innerHTML = "Nenhuma Peneira Cadastrada";
+                    } else {
+                        valores.forEach((valor) => {
+                            const vaga = document.createElement("div");
+                            vaga.className = "vaga";
+                            vaga.innerHTML += `
+                                <h2>${valor.titulo}</h2>
+                                <p><strong>Idade:</strong> ${valor.idade}</p>
+                                <p><strong>Gênero da Vaga:</strong> ${valor.genero}</p>
+                                <p><strong>Esporte:</strong> ${valor.esporte}</p>
+                                <p><strong>Local:</strong> ${valor.endereco}</p>
+                                <p><strong>Data da Peneira:</strong> ${formatDate(valor.data_peneira)}</p>
+                                <p><strong>Data do Fim da Inscrição:</strong> ${formatDate(valor.data_fim)}</p>
+                                <button onclick="carregarModal(${valor.idPeneiras})">Inscrever-se</button>
+                            `;
+                            peneirasList.appendChild(vaga);
+                        });
+                    }
+                })
+                .catch((erro) => {
+                    console.error("Erro ao aplicar os filtros:", erro);
+                });
+}
 
-        function inscrever(id) {
-            const peneira = peneiras.find((p) => p.id === id);
-            if (peneira) {
-                tituloPeneira.textContent = peneira.title;
-                faixaEtaria.textContent = peneira.age;
-                local.textContent = peneira.location;
-                fimInscricao.textContent = formatDate(peneira.endDate);
-                inicioInscricao.textContent = formatDate(peneira.startDate);
-                dataPeneira.textContent = formatDate(peneira.tryoutDate);
-                time.textContent = peneira.team;
+
+        function carregarModal(idPeneira) {
+            console.log("ID enviado para cadastro:", idPeneira);
+    fetch(`/peneiras/carregarModal/${idPeneira}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+      }
+    })
+      .then(resposta => resposta.json())
+      .then(valores => {
+        console.log(valores)
+        peneira = valores
+        valores.forEach((valor) =>{
+            if (valor) {
+                const valor = valores[0];
+                idPeneiras = valor.idPeneiras
+                idTime = valor.fkTime
+                tituloPeneira.textContent = valor.titulo;
+                timePeneira.textContent = valor.nome_time
+                vagasPeneira.textContent  = valor.qtd_vagas
+                faixaEtaria.textContent = valor.idade;
+                generoPeneira.textContent = valor.genero;
+                esportePeneira.textContent = valor.esporte;
+                localPeneira.textContent = valor.endereco
+                dataPeneira.textContent = formatDate(valor.data_peneira);
+                inicioInscricao.textContent = formatDate(valor.data_inicio);
+                fimInscricao.textContent = formatDate(valor.data_fim);
                 modal.classList.remove("hidden");
-            }
-        }
+            };
+        })
+      })
+}
 
-        closeModalButton.addEventListener("click", () => {
+function inscreverUsuario(idPeneira, idTime) {
+            const fkUsuarios = sessionStorage.getItem("ID_USUARIO");
+            const fkPeneiras = idPeneiras;
+            const fkTime = idTime;
+            const dtInscricao = new Date().toISOString().split("T")[0];
+                
+            const inscricao = { fkUsuarios, fkPeneiras, fkTime, dtInscricao };
+                
+            fetch("/peneiras/inscrever", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(inscricao),
+            })
+                .then((resposta) => resposta.json())
+                .then((mensagem) => {
+                    if(mensagem.erro == undefined){
+                        successModal.classList.remove("hidden")
+                    }else alert(mensagem.erro), modal.classList.add("hidden");
+                })
+                .catch((erro) => {
+                    console.error("Erro ao realizar inscrição:", erro);
+                });
+}
+
+        if(closeModalButton){closeModalButton.addEventListener("click", () => {
             modal.classList.add("hidden");
-        });
-
-        confirmButton.addEventListener("click", () => {
+        });}
+        
+        if(confirmButton){confirmButton.addEventListener("click", () => {
             modal.classList.add("hidden");
             successModal.classList.remove("hidden");
-        });
+        });}
+        
 
         closeSuccessModalButton.addEventListener("click", () => {
             successModal.classList.add("hidden");
         });
-
-        // Renderiza as peneiras inicialmente
-        renderPeneiras();
     </script>
 </body>
 

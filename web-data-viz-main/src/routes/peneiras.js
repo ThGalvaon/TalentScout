@@ -16,4 +16,16 @@ router.delete("/excluirPeneira/:idPeneiras", function (req, res) {
     peneirasController.excluirPeneira(req, res);
 });
 
+router.get("/carregarModal/:idPeneiras", function (req, res) {
+    peneirasController.carregarModal(req, res);
+});
+
+router.post("/aplicarFiltros", function (req, res) {
+    peneirasController.aplicarFiltros(req, res);
+});
+
+router.post("/inscrever", function (req, res) {
+    peneirasController.inscrever(req, res);
+});
+
 module.exports = router;

@@ -23,6 +23,7 @@ CREATE TABLE Peneiras (
     titulo VARCHAR(45) NOT NULL,
     qtd_vagas FLOAT,
     idade VARCHAR(45),
+    genero VARCHAR(45),
     esporte VARCHAR(45),
     data_peneira VARCHAR(15),
     data_inicio VARCHAR(15),
@@ -37,13 +38,14 @@ CREATE TABLE Inscricoes (
     fkTime INT NOT NULL,
     dtInscricao VARCHAR(45),
     PRIMARY KEY (fkUsuarios, fkPeneiras, fkTime),
-    FOREIGN KEY (fkUsuarios) REFERENCES Usuarios(id),
+    FOREIGN KEY (fkUsuarios) REFERENCES Usuario(id),
     FOREIGN KEY (fkPeneiras) REFERENCES Peneiras(idPeneiras),
-    FOREIGN KEY (fkTime) REFERENCES Time(idTime)
+    FOREIGN KEY (fkTime) REFERENCES Times(idTime)
 );
 
 drop table peneiras;
 drop table times;
+drop table inscricoes;
 
 DESC usuario;
 
@@ -54,3 +56,5 @@ SELECT * FROM usuario;
 SELECT * FROM peneiras;
 
 SELECT * FROM times;
+
+SELECT * FROM inscricoes;

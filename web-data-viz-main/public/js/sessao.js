@@ -6,7 +6,7 @@ function validarSessao() {
     console.log(nome)
     console.log(email)
     
-    var titulo = document.getElementById("titulo");
+    var titulo = document.getElementById("titulo_header");
 
     if (email != null && nome != null) {
         titulo.innerHTML = nome;

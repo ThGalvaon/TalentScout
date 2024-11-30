@@ -113,7 +113,7 @@
 </style> 
 <body onload="carregarPeneira(), validarSessao()">
     <header class="header">
-        <h1 id="titulo">Área do Time</h1>
+        <h1 id="titulo_header">Área do Time</h1>
         <button onclick="openModal()">Cadastrar Peneira</button>
     </header>
     <div class="container">
@@ -139,6 +139,11 @@
                 <option value="Sub 18">Sub 18</option>
                 <option value="Sub 21">Sub 21</option>
             </select>
+            <label for="idade">Gênero da Vaga</label>
+            <select id="genero">
+                <option value="Feminino">Feminino</option>
+                <option value="Masculino">Masculino</option>
+            </select>
             <label for="dataPeneira">Data da Peneira</label>
             <input type="date" id="dataPeneira">
             <label for="dataInicioInscricao">Data de Início da Inscrição</label>
@@ -153,21 +158,6 @@
             </select>
             <button onclick="cadastrarPeneira()" class="btn-confirm">Confirmar</button>
             <button onclick="closeModal()" class="btn-cancel">Cancelar</button>
-        </div>
-    </div>
-
-    <!-- Modal de Detalhes -->
-    <div id="detalhes-modal" class="modal hidden">
-        <div class="modal-content">
-            <h2>Detalhes da Peneira</h2>
-            <p><strong>Título:</strong> <span id="modal-titulo"></span></p>
-            <p><strong>Vagas:</strong> <span id="modal-vagas"></span></p>
-            <p><strong>Idade:</strong> <span id="modal-idade"></span></p>
-            <p><strong>Data da Peneira:</strong> <span id="modal-dataPeneira"></span></p>
-            <p><strong>Data Início Inscrição:</strong> <span id="modal-dataInicioInscricao"></span></p>
-            <p><strong>Data Fim Inscrição:</strong> <span id="modal-dataFimInscricao"></span></p>
-            <p><strong>Esporte:</strong> <span id="modal-esporte"></span></p>
-            <button onclick="closeDetalhesModal()">Fechar</button>
         </div>
     </div>
 
@@ -193,15 +183,16 @@
             const tituloVar = document.getElementById("titulo").value;
             const vagasVar = document.getElementById("vagas").value;
             const idadeVar = document.getElementById("idade").value;
+            const generoVar = document.getElementById("genero").value;
             const dataPeneiraVar = document.getElementById("dataPeneira").value;
             const dataInicioInscricaoVar = document.getElementById("dataInicioInscricao").value;
             const dataFimInscricaoVar = document.getElementById("dataFimInscricao").value;
             const esporteVar = document.getElementById("esporte").value;
-            const fktime = sessionStorage.getItem("ID_USUARIO");
+            const fktime = sessionStorage.getItem("ID_TIME");
             console.log("ID do Usuário:", fktime);
 
 
-            if (tituloVar && vagasVar && idadeVar && dataPeneiraVar && dataInicioInscricaoVar && dataFimInscricaoVar && esporteVar && fktime) {
+            if (tituloVar && vagasVar && idadeVar && generoVar && dataPeneiraVar && dataInicioInscricaoVar && dataFimInscricaoVar && esporteVar && fktime) {
                 fetch("/peneiras/cadastrarPeneira", {
                   method: "POST",
                   headers: {
@@ -211,6 +202,7 @@
                     tituloServer: tituloVar,
                     vagasServer: vagasVar,
                     idadeServer: idadeVar,
+                    generoServer: generoVar,
                     esporteServer: esporteVar,
                     dataPeneiraServer: dataPeneiraVar,
                     dataInicioInscricaoServer: dataInicioInscricaoVar,
@@ -240,6 +232,11 @@
             }
         }
 
+        function formatDate(dateStr) {
+            const [year, month, day] = dateStr.split("-");
+            return `${day}/${month}/${year}`;
+        }
+
         function carregarPeneira(){
             peneirasList.innerHTML = "";
 
@@ -263,11 +260,12 @@
                         <h2>${valor.titulo}</h2>
                         <p><strong>Quantidade de Vagas:</strong> ${valor.qtd_vagas}</p>
                         <p><strong>Idade:</strong> ${valor.idade}</p>
+                        <p><strong>Gênero da Vaga:</strong> ${valor.genero}</p>
                         <p><strong>Esporte:</strong> ${valor.esporte}</p>
                         <p><strong>Local:</strong> ${valor.endereco}</p>
-                        <p><strong>Data da Peneira:</strong> ${valor.data_peneira}</p>
-                        <p><strong>Data do Inicio da Inscrição:</strong> ${valor.data_inicio}</p>
-                        <p><strong>Data do Fim da Inscrição:</strong> ${valor.data_fim}</p>
+                        <p><strong>Data da Peneira:</strong> ${formatDate(valor.data_peneira)}</p>
+                        <p><strong>Data do Inicio da Inscrição:</strong> ${formatDate(valor.data_inicio)}</p>
+                        <p><strong>Data do Fim da Inscrição:</strong> ${formatDate(valor.data_fim)}</p>
                         <button onclick="excluirPeneira(${valor.idPeneiras})">Excluir</button>
 
                     `;
