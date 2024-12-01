@@ -50,7 +50,10 @@ function cadastrarPeneira(req, res) {
 }
 
 function carregarPeneira(req, res) {
-        peneirasModel.carregarPeneira()
+
+        var idTime = req.params.idTime
+
+        peneirasModel.carregarPeneira(idTime)
             .then(
                 function (resultado) {
                     res.json(resultado);

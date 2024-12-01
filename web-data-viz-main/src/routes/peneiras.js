@@ -8,7 +8,7 @@ router.post("/cadastrarPeneira", function (req, res) {
     peneirasController.cadastrarPeneira(req, res);
 })
 
-router.get("/carregarPeneira", function (req, res) {
+router.get("/carregarPeneira/:idTime", function (req, res) {
     peneirasController.carregarPeneira(req, res);
 })
 

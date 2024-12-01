@@ -12,13 +12,14 @@ function cadastrarPeneira(titulo, qtd_vagas, idade, genero, esporte, data_peneir
 }
 
 
-function carregarPeneira() {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function carregarPeneira():");
+function carregarPeneira(idTime) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function carregarPeneira():", idTime);
     
     var instrucaoSql = `
         SELECT peneiras.*, concat(times.logradouro_sede, ', ', times.num_endereco) AS endereco
         FROM peneiras
-        JOIN times ON peneiras.fktime = times.idTime;
+        JOIN times ON peneiras.fktime = times.idTime
+        WHERE fkTime = ${idTime};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -47,46 +48,9 @@ function carregarModal(idPeneira) {
     return database.executar(instrucaoSql)
 }
 
-function aplicarFiltros(whereQuery) {
-    console.log("ACESSEI O USUARIO MODEL para aplicar filtros.");
-    
-    const instrucaoSql = `
-        SELECT peneiras.*, CONCAT(times.logradouro_sede, ', ', times.num_endereco) AS endereco, times.nome_time
-        FROM peneiras
-        JOIN times ON peneiras.fktime = times.idTime
-        ${whereQuery};
-    `;
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
-function validarInscricao(fkUsuarios, fkPeneiras) {
-    const instrucaoSql = `
-        SELECT * FROM inscricoes 
-        WHERE fkUsuarios = ${fkUsuarios} AND fkPeneiras = ${fkPeneiras};
-    `;
-
-    console.log("Executando a instrução SQL (validar): \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
-function inscrever(fkUsuarios, fkPeneiras, fkTime, dtInscricao) {
-    const instrucaoSql = `
-        INSERT INTO inscricoes (fkUsuarios, fkPeneiras, fkTime, dtInscricao)
-        VALUES (${fkUsuarios}, ${fkPeneiras}, ${fkTime}, '${dtInscricao}');
-    `;
-
-    console.log("Executando a instrução SQL (inscrever): \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
 module.exports = {
     carregarPeneira,
     cadastrarPeneira,
     excluirPeneira, 
     carregarModal,
-    aplicarFiltros,
-    inscrever,
-    validarInscricao
 };

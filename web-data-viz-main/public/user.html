@@ -117,12 +117,26 @@
         #close-success-modal:hover {
             background: #c82333;
         }
+        .btn-logout {
+            background: #dc3545; /* Vermelho */
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 1rem;
+        }
+        .btn-logout:hover {
+            background: #422124;
+        }
+
     </style>
 </head>
 
 <body onload="carregarPeneira(), validarSessao()">
     <header class="header">
         <h1 id="titulo_header">Área do Usuário</h1>
+        <button onclick="limparSessao()" class="btn-logout">Logout</button>
     </header>
     <div class="container">
         <!-- Filtros -->
@@ -211,7 +225,7 @@
         }
         function carregarPeneira(){
             peneirasList.innerHTML = "";
-            fetch("/peneiras/carregarPeneira", {
+            fetch("/user_peneiras/carregarPeneira", {
                   method: "GET",
                   headers: {
                     "Content-Type": "application/json",
@@ -259,7 +273,7 @@
             console.log("Filtros selecionados:", filtros);
             peneirasList.innerHTML = "";
 
-            fetch("/peneiras/aplicarFiltros", {
+            fetch("/user_peneiras/aplicarFiltros", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -297,7 +311,7 @@
 
         function carregarModal(idPeneira) {
             console.log("ID enviado para cadastro:", idPeneira);
-    fetch(`/peneiras/carregarModal/${idPeneira}`, {
+    fetch(`/user_peneiras/carregarModal/${idPeneira}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -336,7 +350,7 @@ function inscreverUsuario(idPeneira, idTime) {
                 
             const inscricao = { fkUsuarios, fkPeneiras, fkTime, dtInscricao };
                 
-            fetch("/peneiras/inscrever", {
+            fetch("/user_peneiras/inscrever", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

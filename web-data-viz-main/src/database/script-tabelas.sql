@@ -58,3 +58,25 @@ SELECT * FROM peneiras;
 SELECT * FROM times;
 
 SELECT * FROM inscricoes;
+
+SELECT COUNT(*) AS quantidade FROM Peneiras WHERE fkTime = 1;
+
+        SELECT peneiras.*, concat(times.logradouro_sede, ', ', times.num_endereco) AS endereco
+        FROM peneiras
+        JOIN times ON peneiras.fktime = 2;
+        
+        
+SELECT 
+        dtInscricao AS dia,
+        COUNT(*) AS quantidade
+        FROM Inscricoes
+        WHERE fkTime = 2
+        GROUP BY dia;
+        
+ALTER TABLE Inscricoes
+DROP FOREIGN KEY inscricoes_ibfk_2;
+
+ALTER TABLE Inscricoes
+ADD CONSTRAINT inscricoes_ibfk_2
+FOREIGN KEY (fkPeneiras) REFERENCES Peneiras(idPeneiras)
+ON DELETE CASCADE;

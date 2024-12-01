@@ -23,6 +23,9 @@ var aquariosRouter = require("./src/routes/aquarios");
 var empresasRouter = require("./src/routes/empresas");
 var peneirasRouter = require("./src/routes/peneiras")
 var timesRouter = require("./src/routes/times")
+var dashboardRouter = require("./src/routes/dashboard");
+var user_peneirasRouter = require("./src/routes/user_peneiras");
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -38,6 +41,8 @@ app.use("/aquarios", aquariosRouter);
 app.use("/empresas", empresasRouter);
 app.use("/peneiras", peneirasRouter)
 app.use("/times", timesRouter)
+app.use("/dashboard", dashboardRouter);
+app.use("/user_peneiras", user_peneirasRouter);
 
 
 app.listen(PORTA_APP, function () {

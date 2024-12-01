@@ -23,7 +23,7 @@
         padding: 1% 5% 1% 5%;
         text-align: center;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: center;
     }
     .header button {
@@ -110,11 +110,26 @@
     .btn-confirm:hover{
         background: #04bd2f !important;
     }
+    .btn-logout {
+    background: #dc3545 !important; /* Vermelho */
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 1rem;
+}
+.btn-logout:hover {
+    background: #c82333;
+}
+
 </style> 
 <body onload="carregarPeneira(), validarSessao()">
     <header class="header">
         <h1 id="titulo_header">Área do Time</h1>
         <button onclick="openModal()">Cadastrar Peneira</button>
+        <a href="dashboard/dashboard.html"><button>Acesso à Dashboard</button></a> 
+        <button onclick="limparSessao()" class="btn-logout">Logout</button>
     </header>
     <div class="container">
         <!-- Área de Vagas -->
@@ -239,12 +254,13 @@
 
         function carregarPeneira(){
             peneirasList.innerHTML = "";
+            const idTime = sessionStorage.getItem("ID_TIME");
 
-            fetch("/peneiras/carregarPeneira", {
-                  method: "GET",
-                  headers: {
-                    "Content-Type": "application/json",
-                  }
+                fetch(`/peneiras/carregarPeneira/${idTime}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
                 })
                   .then(resposta => resposta.json())
                   .then(valores => {
