@@ -13,8 +13,8 @@ O *TalentScout* é uma plataforma web desenvolvida para conectar atletas e times
 - **Backend:** Node.js com Express.js para APIs RESTful.  
 - **Banco de Dados:** MySQL para armazenamento e manipulação de dados.  
 - **Controle de Versão:** Git e GitHub para versionamento e colaboração.  
-- **Gerenciamento de Variáveis de Ambiente:** Dotenv.
-
+- **Ferramenta de Gestão:** Trello utilizando a metodologia Kanban para planejamento e administração de atividades.
+- 
 ## Como Executar  
 1. Clone este repositório.  
 2. Instale as dependências com `npm install`.  
