@@ -15,12 +15,15 @@
 <body>
   <main id="container">
     <div id="cadastro_form">
+        <div class="alerta_erro">
+          <div class="card_erro" id="cardErro">
+              <span id="mensagem_erro"></span>
+          </div>
+      </div>
       <div id="form_header">
         <h1>Cadastro</h1>
       </div>
       <div id="social_media">
-        <!-- Seção para redes sociais, com id "social_media" -->
-
         <a href="index.html">
             <img src="assets/imgs/logo.png" alt="Talent Scout">
             <!-- Link com a imagem do logo, que ainda não leva a nenhuma página -->
@@ -68,6 +71,9 @@
               Já possuo Login
             </a>
           </div>
+        </div>          
+        <div id="div_aguardar" class="loading-div">
+          <img src="./assets/aguarde-orange.gif" id="loading-gif" />
         </div>
 
         <button id="cadastro_button" onclick="validarCadastro()">Cadastrar</button>

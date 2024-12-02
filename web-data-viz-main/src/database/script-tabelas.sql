@@ -70,7 +70,7 @@ SELECT
         dtInscricao AS dia,
         COUNT(*) AS quantidade
         FROM Inscricoes
-        WHERE fkTime = 2
+        WHERE fkTime = 1
         GROUP BY dia;
         
 ALTER TABLE Inscricoes

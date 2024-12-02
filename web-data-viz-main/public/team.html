@@ -8,26 +8,63 @@
 
 </head>
 <style>
-    /* CSS */
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-    }
-    .header {
-        background: #333;
-        color: #fff;
-        padding: 1% 5% 1% 5%;
-        text-align: center;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        button {
+        font-family: 'Poppins', sans-serif; /* Altere para a fonte desejada */
+        font-size: 16px; /* Tamanho da fonte */
+        font-weight: 500; /* Espessura da fonte */
+        color: white; /* Cor do texto */
+        background-color: #28a745; /* Cor de fundo */
+        border: none; /* Remove bordas */
+        padding: 0.5rem 1rem; /* Espaçamento interno */
+        border-radius: 5px; /* Bordas arredondadas */
+        cursor: pointer; /* Cursor de clique */
+        }
+
+        button:hover {
+            background-color: #218838; /* Cor de fundo ao passar o mouse */
+        }
+
+        input, select {
+            font-family: 'Poppins', sans-serif; /* Altere para a fonte desejada */
+            font-size: 16px; /* Tamanho da fonte */
+            font-weight: 400; /* Espessura da fonte */
+            color: #333; /* Cor do texto */
+            background-color: #f8f8f8; /* Cor de fundo */
+            border: 1px solid #ccc; /* Borda */
+            padding: 0.5rem; /* Espaçamento interno */
+            border-radius: 5px; /* Bordas arredondadas */
+            cursor: pointer; /* Cursor de clique */
+        }
+        body {
+            font-family: Poppins, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header {
+            top: 0; /* Fixa no topo */
+            width: 100%; /* Faz o header ocupar toda a largura */
+            background: #333; /* Cor de fundo */
+            color: #fff; /* Cor do texto */
+            padding: 1rem; /* Espaçamento interno */
+            text-align: center; /* Centraliza o texto */
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Adiciona uma leve sombra */
+            min-height: fit-content;
+        }
+
+        .container {
+            flex: 1;
+            padding: 1rem;
+            align-self: center;
+            width: 60%;
+        }
+
     .header button {
-        background: #007bff;
+        background: rgb(117, 158, 66);
         color: #fff;
         border: none;
         padding: 0.5rem 1rem;
@@ -35,11 +72,7 @@
         border-radius: 5px;
     }
     .header button:hover {
-        background: #0056b3;
-    }
-    .container {
-        display: flex;
-        flex: 1;
+        background: rgb(50, 81, 4);
     }
     .vagas {
         flex: 1;
@@ -79,6 +112,17 @@
         justify-content: center;
         align-items: center;
     }
+    .modal-0{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .modal-1{
+        display: flex;
+        flex-direction: column;
+        padding: 1%;
+        gap: 2vh;
+    }
     .modal.hidden {
         display: none;
     }
@@ -91,6 +135,8 @@
         border-radius: 5px;
         text-align: center;
         border-radius: 10px;
+        width: 25%;
+        min-width: fit-content;
     }
     .modal-content button {
         background: #dc3545;
@@ -126,10 +172,12 @@
 </style> 
 <body onload="carregarPeneira(), validarSessao()">
     <header class="header">
-        <h1 id="titulo_header">Área do Time</h1>
-        <button onclick="openModal()">Cadastrar Peneira</button>
-        <a href="dashboard/dashboard.html"><button>Acesso à Dashboard</button></a> 
-        <button onclick="limparSessao()" class="btn-logout">Logout</button>
+        <h1>Olá <span id="titulo_header">Time</span></h1>
+        <div class="botoes">
+            <button onclick="openModal()">Cadastrar Peneira</button>
+            <a href="dashboard/dashboard.html"><button>Acesso à Dashboard</button></a> 
+            <button onclick="limparSessao()" class="btn-logout">Deslogar</button>
+        </div>
     </header>
     <div class="container">
         <!-- Área de Vagas -->
@@ -145,32 +193,38 @@
     <div id="modal" class="modal hidden">
         <div class="modal-content">
             <h2>Cadastrar Nova Peneira</h2>
-            <label for="titulo">Título</label>
-            <input type="text" id="titulo" placeholder="Título da Peneira">
-            <label for="vagas">Quantidade de Vagas</label>
-            <input type="number" id="vagas" placeholder="Número de Vagas">
-            <label for="idade">Idade</label>
-            <select id="idade">
-                <option value="Sub 18">Sub 18</option>
-                <option value="Sub 21">Sub 21</option>
-            </select>
-            <label for="idade">Gênero da Vaga</label>
-            <select id="genero">
-                <option value="Feminino">Feminino</option>
-                <option value="Masculino">Masculino</option>
-            </select>
-            <label for="dataPeneira">Data da Peneira</label>
-            <input type="date" id="dataPeneira">
-            <label for="dataInicioInscricao">Data de Início da Inscrição</label>
-            <input type="date" id="dataInicioInscricao">
-            <label for="dataFimInscricao">Data de Fim da Inscrição</label>
-            <input type="date" id="dataFimInscricao">
-            <label for="esporte">Esporte</label>
-            <select id="esporte">
-                <option value="Futebol">Futebol</option>
-                <option value="Basquete">Basquete</option>
-                <option value="Vôlei">Vôlei</option>
-            </select>
+            <div class="modal-0">
+            <div class="modal-1">            
+                <label for="titulo">Título</label>
+                <input type="text" id="titulo" placeholder="Título da Peneira">
+                <label for="vagas">Quantidade de Vagas</label>
+                <input type="number" id="vagas" placeholder="Número de Vagas">
+                <label for="idade">Idade</label>
+                <select id="idade">
+                    <option value="Sub 18">Sub 18</option>
+                    <option value="Sub 21">Sub 21</option>
+                </select>
+                <label for="idade">Gênero da Vaga</label>
+                <select id="genero">
+                    <option value="Feminino">Feminino</option>
+                    <option value="Masculino">Masculino</option>
+                </select>
+            </div>
+            <div class="modal-1">
+                <label for="dataPeneira">Data da Peneira</label>
+                <input type="date" id="dataPeneira">
+                <label for="dataInicioInscricao">Data de Início da Inscrição</label>
+                <input type="date" id="dataInicioInscricao">
+                <label for="dataFimInscricao">Data de Fim da Inscrição</label>
+                <input type="date" id="dataFimInscricao">
+                <label for="esporte">Esporte</label>
+                <select id="esporte">
+                    <option value="Futebol">Futebol</option>
+                    <option value="Basquete">Basquete</option>
+                    <option value="Vôlei">Vôlei</option>
+                </select>
+            </div>
+        </div>
             <button onclick="cadastrarPeneira()" class="btn-confirm">Confirmar</button>
             <button onclick="closeModal()" class="btn-cancel">Cancelar</button>
         </div>

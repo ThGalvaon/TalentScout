@@ -7,40 +7,125 @@
     <title>Área do Usuário</title>
     <script src="../js/sessao.js"></script>
     <style>
-        /* CSS */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        button {
+        font-family: 'Poppins', sans-serif; /* Altere para a fonte desejada */
+        font-size: 16px; /* Tamanho da fonte */
+        font-weight: 500; /* Espessura da fonte */
+        color: white; /* Cor do texto */
+        background-color: #28a745; /* Cor de fundo */
+        border: none; /* Remove bordas */
+        padding: 0.5rem 1rem; /* Espaçamento interno */
+        border-radius: 5px; /* Bordas arredondadas */
+        cursor: pointer; /* Cursor de clique */
+        }
+
+        button:hover {
+            background-color: #218838; /* Cor de fundo ao passar o mouse */
+        }
+
+        select {
+            font-family: 'Poppins', sans-serif; /* Altere para a fonte desejada */
+            font-size: 16px; /* Tamanho da fonte */
+            font-weight: 400; /* Espessura da fonte */
+            color: #333; /* Cor do texto */
+            background-color: #f8f8f8; /* Cor de fundo */
+            border: 1px solid #ccc; /* Borda */
+            padding: 0.5rem; /* Espaçamento interno */
+            border-radius: 5px; /* Bordas arredondadas */
+            cursor: pointer; /* Cursor de clique */
+        }
+
+        select:hover {
+            border: 2px solid #fc7100; /* Cor da borda ao passar o mouse */
+        }
+
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: Poppins, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column;
             height: 100vh;
         }
 
-        .header {
+        .user{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        .sidebar {
+            width: 20%;
             background: #333;
             color: #fff;
             padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100%;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar h2 {
             text-align: center;
         }
 
-        .container {
-            flex: 1;
-            padding: 1rem;
-        }
-
         .filters {
+            display: flex;
             margin-bottom: 1rem;
+            margin-top: 5rem;
+            padding: 0 2rem 0 2rem;
+            flex-direction: column;
         }
 
         .filters select {
+            width: 100%;
             padding: 0.5rem;
-            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
             font-size: 1rem;
         }
 
-        .vagas h2 {
-            margin-top: 0;
+        .filters button {
+            padding: 0.5rem;
+            background: #ff4500;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .filters button:hover {
+            background: #218838;
+        }
+
+        .btn-logout {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: fit-content;
+            align-self: center;
+        }
+
+        .btn-logout:hover {
+            background: #66181e;
+        }
+
+        .container {
+            margin-left: 22%;
+            padding: 1rem;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .vagas {
+            margin-top: 2rem;
         }
 
         .vaga {
@@ -48,14 +133,12 @@
             padding: 1rem;
             margin-bottom: 1rem;
             border-radius: 5px;
-        }
-
-        .vaga h3 {
-            margin: 0 0 0.5rem 0;
+            background: #f8f8f8;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .vaga button {
-            background: #28a745;
+            background: #d35502;
             color: #fff;
             border: none;
             padding: 0.5rem 1rem;
@@ -88,6 +171,7 @@
             padding: 2rem;
             border-radius: 5px;
             text-align: center;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
         }
 
         .modal-content button {
@@ -117,49 +201,39 @@
         #close-success-modal:hover {
             background: #c82333;
         }
-        .btn-logout {
-            background: #dc3545; /* Vermelho */
-            color: #fff;
-            border: none;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-left: 1rem;
-        }
-        .btn-logout:hover {
-            background: #422124;
-        }
-
     </style>
 </head>
 
 <body onload="carregarPeneira(), validarSessao()">
-    <header class="header">
-        <h1 id="titulo_header">Área do Usuário</h1>
-        <button onclick="limparSessao()" class="btn-logout">Logout</button>
-    </header>
-    <div class="container">
-        <!-- Filtros -->
+    <aside class="sidebar">
+        <div class="user">        
+            <h1>Olá <span id="titulo_header">Usuario</span></h1>
+            <button onclick="limparSessao()" class="btn-logout">Deslogar</button></div>
         <div class="filters">
+            <h3>Idade</h3>
             <select id="filter-idade">
                 <option value="">Todas as idades</option>
                 <option value="Sub 18">Sub 18</option>
                 <option value="Sub 21">Sub 21</option>
             </select>
+            <h3>Gênero da Vaga</h3>
             <select id="filter-genero">
-                <option value="">Todas os gêneros</option>
+                <option value="">Todos os gêneros</option>
                 <option value="Masculino">Masculino</option>
                 <option value="Feminino">Feminino</option>
             </select>
+            <h3>Esporte</h3>
             <select id="filter-esporte">
                 <option value="">Todos os esportes</option>
                 <option value="Basquete">Basquete</option>
                 <option value="Futebol">Futebol</option>
                 <option value="Volei">Volei</option>
             </select>
-            <button onclick="aplicarFiltros()">Filtrar</button>
+            <button onclick="aplicarFiltros()">Aplicar Filtros</button>
         </div>
+    </aside>
 
+    <div class="container">
         <h2>Peneiras Disponíveis</h2>
         <div id="peneiras-list">
             <!-- Lista de peneiras será gerada dinamicamente -->
@@ -169,23 +243,21 @@
     <!-- Modal de Detalhes -->
     <div id="modal" class="modal hidden">
         <div class="modal-content">
-            <div class="modal-content">
-                <h2>Detalhes da Peneira</h2>
-                <p><strong>Título:</strong> <span id="modal-titulo"></span></p>
-                <p><strong>Time:</strong> <span id="modal-time"></span></p>
-                <p><strong>Vagas:</strong> <span id="modal-vagas"></span></p>
-                <p><strong>Idade:</strong> <span id="modal-idade"></span></p>
-                <p><strong>Gênero da Vaga:</strong> <span id="modal-genero"></span></p>
-                <p><strong>Local:</strong> <span id="modal-local"></span></p>
-                <p><strong>Data da Peneira:</strong> <span id="modal-dataPeneira"></span></p>
-                <p><strong>Data Início Inscrição:</strong> <span id="modal-dataInicioInscricao"></span></p>
-                <p><strong>Data Fim Inscrição:</strong> <span id="modal-dataFimInscricao"></span></p>
-                <p><strong>Esporte:</strong> <span id="modal-esporte"></span></p>
+            <h2>Detalhes da Peneira</h2>
+            <p><strong>Título:</strong> <span id="modal-titulo"></span></p>
+            <p><strong>Time:</strong> <span id="modal-time"></span></p>
+            <p><strong>Vagas:</strong> <span id="modal-vagas"></span></p>
+            <p><strong>Idade:</strong> <span id="modal-idade"></span></p>
+            <p><strong>Gênero da Vaga:</strong> <span id="modal-genero"></span></p>
+            <p><strong>Local:</strong> <span id="modal-local"></span></p>
+            <p><strong>Data da Peneira:</strong> <span id="modal-dataPeneira"></span></p>
+            <p><strong>Data Início Inscrição:</strong> <span id="modal-dataInicioInscricao"></span></p>
+            <p><strong>Data Fim Inscrição:</strong> <span id="modal-dataFimInscricao"></span></p>
+            <p><strong>Esporte:</strong> <span id="modal-esporte"></span></p>
             <button id="close-modal">Fechar</button>
             <button onclick="inscreverUsuario(idPeneiras, idTime)" class="confirm-button">Confirmar Inscrição</button>
         </div>
     </div>
-
     <div id="success-modal" class="modal hidden">
         <div class="modal-content">
             <h2>Inscrição Realizada!</h2>
@@ -193,7 +265,6 @@
             <button id="close-success-modal">Fechar</button>
         </div>
     </div>
-
     <script>
         const peneiras = []
         const valores = []
@@ -311,35 +382,35 @@
 
         function carregarModal(idPeneira) {
             console.log("ID enviado para cadastro:", idPeneira);
-    fetch(`/user_peneiras/carregarModal/${idPeneira}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-      }
-    })
-      .then(resposta => resposta.json())
-      .then(valores => {
-        console.log(valores)
-        peneira = valores
-        valores.forEach((valor) =>{
-            if (valor) {
-                const valor = valores[0];
-                idPeneiras = valor.idPeneiras
-                idTime = valor.fkTime
-                tituloPeneira.textContent = valor.titulo;
-                timePeneira.textContent = valor.nome_time
-                vagasPeneira.textContent  = valor.qtd_vagas
-                faixaEtaria.textContent = valor.idade;
-                generoPeneira.textContent = valor.genero;
-                esportePeneira.textContent = valor.esporte;
-                localPeneira.textContent = valor.endereco
-                dataPeneira.textContent = formatDate(valor.data_peneira);
-                inicioInscricao.textContent = formatDate(valor.data_inicio);
-                fimInscricao.textContent = formatDate(valor.data_fim);
-                modal.classList.remove("hidden");
-            };
-        })
-      })
+            fetch(`/user_peneiras/carregarModal/${idPeneira}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+              }
+            })
+              .then(resposta => resposta.json())
+              .then(valores => {
+                console.log(valores)
+                peneira = valores
+                valores.forEach((valor) =>{
+                    if (valor) {
+                        const valor = valores[0];
+                        idPeneiras = valor.idPeneiras
+                        idTime = valor.fkTime
+                        tituloPeneira.textContent = valor.titulo;
+                        timePeneira.textContent = valor.nome_time
+                        vagasPeneira.textContent  = valor.qtd_vagas
+                        faixaEtaria.textContent = valor.idade;
+                        generoPeneira.textContent = valor.genero;
+                        esportePeneira.textContent = valor.esporte;
+                        localPeneira.textContent = valor.endereco
+                        dataPeneira.textContent = formatDate(valor.data_peneira);
+                        inicioInscricao.textContent = formatDate(valor.data_inicio);
+                        fimInscricao.textContent = formatDate(valor.data_fim);
+                        modal.classList.remove("hidden");
+                    };
+                })
+              })
 }
 
 function inscreverUsuario(idPeneira, idTime) {

@@ -7,15 +7,16 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/sessao_time.js"></script>
     <style>
-        /* CSS */
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: Poppins, sans-serif;
             margin: 0;
             display: flex;
             height: 100vh;
         }
 
-        /* Sidebar */
         .sidebar {
             width: 15%;
             background: #333;
@@ -37,7 +38,7 @@
             text-align: center;
         }
         .sidebar button {
-            background: #007bff;
+            background: rgb(117, 158, 66);
             color: #fff;
             border: none;
             padding: 0.5rem 1rem;
@@ -46,7 +47,7 @@
             margin-top: 1rem;
         }
         .sidebar button:hover {
-            background: #0056b3;
+            background: rgb(69, 112, 5);
         }
 
         /* Main Content */
@@ -62,9 +63,10 @@
             justify-content: space-between;
             width: 100%;
             margin-bottom: 2rem;
+            gap: 2vh;
         }
         .kpi {
-            background: #f8f9fa;
+            background: #f1f1f1;
             padding: 1.5rem;
             border-radius: 10px;
             width: 30%;
@@ -81,8 +83,12 @@
 
         /* Chart */
         .chart-container {
-            width: 100%;
-            height: 400px;
+            width: 80%;
+            height: fit-content;
+            justify-self: center;
+            border: #f1f1f1 solid 3px;
+            box-shadow: 5px 5px 8px rgb(0, 0, 0, 0.336);
+            margin-bottom: 3%;
         }
     </style>
 </head>
@@ -90,7 +96,7 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <img src="https://via.placeholder.com/100" alt="Imagem do Time">
+        <img src="../assets/imgs/manager.png" alt="Imagem do Time">
         <h2 id="nome-time">Nome do Time</h2>
         <p id="email-time">email@example.com</p>
         <button onclick="voltarTelaCadastro()">Voltar para Cadastro</button>
@@ -158,44 +164,108 @@
         }
 
         function atualizarGrafico(dadosInscricoes) {
-            const ctx = document.getElementById("inscricoes-chart").getContext("2d");
+    const ctx = document.getElementById("inscricoes-chart").getContext("2d");
 
-            const mockData = [
-                { dia: "2024-11-27", quantidade: 10 },
-                { dia: "2024-11-26", quantidade: 8 },
-                { dia: "2024-11-27", quantidade: 5 },
-                { dia: "2024-11-28", quantidade: 10 },
-                { dia: "2024-11-29", quantidade: 6 },
-                { dia: "2024-11-30", quantidade: 7 },
-            ];
-            const combinedData = [...mockData, ...dadosInscricoes.slice(-1)].slice(-7);
+    // Data de hoje no formato necessário (YYYY-MM-DD)
+    const hoje = new Date().toISOString().split("T")[0];
 
-            const labels = combinedData.map(dado => formatDate(dado.dia));
-            const valores = combinedData.map(dado => dado.quantidade);
+    // Verifica se já existem dados para o dia de hoje
+    const inscricoesHoje = dadosInscricoes.find(dado => dado.dia === hoje);
 
-            new Chart(ctx, {
-                type: "line",
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: "Inscrições no Dia",
-                        data: valores,
-                        backgroundColor: "rgba(54, 162, 235, 0.2)",
-                        borderColor: "rgba(54, 162, 235, 1)",
-                        borderWidth: 2,
-                        fill: true,
-                    }]
+    // Se não houver dados para hoje, adiciona um valor zerado
+    if (!inscricoesHoje) {
+        dadosInscricoes.push({ dia: hoje, quantidade: 0 });
+    }
+
+    // Dados mockados para preencher o gráfico
+    const mockData = [
+        { dia: "2024-11-27", quantidade: 10 },
+        { dia: "2024-11-26", quantidade: 8 },
+        { dia: "2024-11-27", quantidade: 5 },
+        { dia: "2024-11-28", quantidade: 10 },
+        { dia: "2024-11-29", quantidade: 6 },
+        { dia: "2024-11-30", quantidade: 7 },
+    ];
+
+    // Combina os dados mockados com os dados reais
+    const combinedData = [...mockData, ...dadosInscricoes];
+
+    // Ordena os dados combinados por data
+    combinedData.sort((a, b) => new Date(a.dia) - new Date(b.dia));
+
+    // Seleciona apenas os últimos 7 dias
+    const finalData = combinedData.slice(-7);
+
+    // Prepara os rótulos e valores para o gráfico
+    const labels = finalData.map(dado => formatDate(dado.dia));
+    const valores = finalData.map(dado => dado.quantidade);
+
+    // Configuração do gráfico
+    new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Inscrições no Dia",
+                data: valores,
+                backgroundColor: "rgba(69, 112, 5, 0.2)",
+                borderColor: "rgba(69, 112, 5, 1)",
+                borderWidth: 3,
+                tension: 0.4,
+                pointBackgroundColor: "rgba(69, 112, 5, 1)",
+                pointBorderColor: "rgba(255, 255, 255, 1)",
+                pointBorderWidth: 2,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                fill: true,
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    ticks: {
+                        color: "rgb(69, 112, 5)",
+                        font: {
+                            size: 14,
+                            weight: "bold",
+                            family: "Poppins",
+                        },
+                    },
+                    grid: {
+                        color: "rgba(69, 112, 5, 0.2)",
+                    },
                 },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                        }
-                    }
-                }
-            });
+                y: {
+                    ticks: {
+                        color: "rgb(69, 112, 5)",
+                        font: {
+                            size: 14,
+                            weight: "bold",
+                            family: "Poppins",
+                        },
+                    },
+                    grid: {
+                        color: "rgba(69, 112, 5, 0.2)",
+                    },
+                    beginAtZero: true,
+                },
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            family: "Poppins",
+                            size: 14,
+                            weight: "bold",
+                        },
+                    },
+                },
+            },
         }
+    });
+}
+
     </script>
 </body>
 </html>

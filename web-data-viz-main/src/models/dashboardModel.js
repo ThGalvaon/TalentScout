@@ -39,7 +39,6 @@ function obterInscricoesPorSemana(idTime) {
         FROM Inscricoes
         WHERE fkTime = ${idTime}
         GROUP BY dia;
-
     `;
     return database.executar(instrucaoSql);
 }

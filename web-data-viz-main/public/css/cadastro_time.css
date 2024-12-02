@@ -1,19 +1,16 @@
-/* Importa a fonte Poppins do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* Declaração de variáveis CSS para cores e gradientes */
 :root {
     --color-light-50: #f8fafc; /* Cor de fundo claro */
     --color-dark-50: #797984;  /* Cor de texto claro */
-    --color-dark-100: #412f24; /* Cor escura de fundo */
     --color-dark-900: #000;    /* Cor de texto escuro */
     
-    --color-orange-50: #ff7f32;  /* Laranja mais vibrante */
-    --color-orange-100: #d65a0e; /* Laranja mais escuro */
-    --color-orange-200: #9c3e0d; /* Laranja profundo */
+    --color-green-50: rgb(117, 158, 66);  /* Verde claro */
+    --color-green-100: rgb(69, 112, 5);  /* Verde médio */
+    --color-green-200: rgb(50, 81, 4);   /* Verde profundo */
 
-    /* Gradiente criado a partir das cores de laranja */
-    --color-gradient: linear-gradient(90deg, var(--color-orange-50), var(--color-orange-100), var(--color-orange-200));
+    /* Gradiente criado a partir das cores de verde */
+    --color-gradient: linear-gradient(90deg, var(--color-green-50), var(--color-green-100), var(--color-green-200));
 }
 
 /* Estilização geral de todos os elementos */
@@ -22,7 +19,6 @@
     margin: 0; /* Remove margens padrão */
     padding: 0; /* Remove preenchimento padrão */
     box-sizing: border-box; /* Faz com que a largura e altura incluam padding e bordas */
-
 }
 
 /* Estilo do container principal */
@@ -37,7 +33,7 @@
 }
 
 /* Estilo do formulário de cadastro */
-#cadastro_form{
+#cadastro_form {
     background-color: var(--color-light-50); /* Cor de fundo do formulário */
     display: flex; /* Utiliza Flexbox */
     flex-direction: column; /* Alinha os elementos em coluna */
@@ -59,24 +55,24 @@
 }
 
 /* Estilo do título do cabeçalho */
-#form_header h1{
+#form_header h1 {
     font-size: 40px; /* Tamanho da fonte do título */
     position: relative; /* Para posicionar o pseudo-elemento abaixo do título */
 }
 
 /* Linha abaixo do título usando um pseudo-elemento */
-#form_header h1:before{
+#form_header h1:before {
     position: absolute; /* Permite que seja posicionado em relação ao título */
     content: ""; /* Necessário para exibir o elemento */
     width: 100%; /* Largura total da linha */
-    background-color: var(--color-orange-50); /* Cor da linha */
+    background-color: var(--color-green-100); /* Cor da linha */
     height: 3px; /* Altura da linha */
     bottom: 10px; /* Distância da parte inferior do título */
     border-radius: 5px;  /* Bordas arredondadas da linha */
 }
 
 /* Estilo do ícone que muda o modo (dia/noite) */
-#mode_icon{
+#mode_icon {
     cursor: pointer; /* Indica que o ícone é clicável */
     font-size: 25px; /* Tamanho da fonte do ícone */
 }
@@ -104,7 +100,7 @@
     gap: 15px; /* Espaço entre os inputs */
 }
 
-::placeholder{
+::placeholder {
     font-family: Poppins;
     font-size: small;
 }
@@ -117,55 +113,55 @@
 }
 
 /* Estilo do campo de entrada */
-.input-field{
+.input-field {
     display: flex; /* Utiliza Flexbox */
     align-items: center; /* Alinha verticalmente os elementos */
     gap: 15px; /* Espaço entre ícones e campos de entrada */
     padding: 3px; /* Preenchimento interno do campo */
     cursor: text; /* Indica que o campo é editável */
-    border-bottom: 1px solid var(--color-orange-50); /* Borda inferior do campo */
+    border-bottom: 1px solid var(--color-green-100); /* Borda inferior do campo */
 }
 
 /* Estilo do texto dentro do campo de entrada */
 .input-field {
-    font-size: 18px; /* Tamanho da fonte do texto */
+    font-size: 18px; /* Tamanho da fonte */
     color: var(--color-dark-900); /* Cor do texto */
 }
 
 /* Estilo do elemento de input dentro do campo de entrada */
-.input-field input{
+.input-field input {
     border: none; /* Remove a borda padrão */
     background-color: transparent; /* Fundo transparente */
     width: 260px; /* Largura do campo de entrada */
-    font-size: 18px; /* Tamanho da fonte do campo de entrada */
-    padding: 0px 5px; /* Preenchimento interno do campo */
+    font-size: 18px; /* Tamanho da fonte */
+    padding: 0px 5px; /* Preenchimento interno */
 }
 
 /* Remove o contorno ao focar no campo de entrada */
-.input-field input:focus:focus {
+.input-field input:focus {
     outline: none; /* Remove a borda de foco padrão */
 }
 
 /* Estilo do link que leva ao login */
 #ir_login a {
     text-decoration: none; /* Remove o sublinhado do link */
-    font-size: 14px; /* Tamanho da fonte do link */
-    color: #db7434;
+    font-size: 14px; /* Tamanho da fonte */
+    color: var(--color-green-50);
 }
 
 /* Efeito de hover no link para login */
-#ir_login a:hover{
-    color: var(--color-orange-50); /* Muda a cor do link ao passar o mouse */
+#ir_login a:hover {
+    color: var(--color-green-100); /* Muda a cor ao passar o mouse */
 }
 
 /* Estilo do botão de cadastro */
-#cadastro_button{
-    border: none; /* Remove a borda padrão */
-    background-color: #ff4500; /* Cor de fundo do botão */
-    color: var(--color-light-50); /* Cor do texto do botão */
-    padding: 7px 40px; /* Preenchimento interno do botão */
-    font-size: 18px; /* Tamanho da fonte do botão */
-    border-radius: 3px; /* Bordas arredondadas do botão */
+#cadastro_button {
+    border: none; /* Remove a borda */
+    background-color: var(--color-green-100); /* Cor de fundo */
+    color: var(--color-light-50); /* Cor do texto */
+    padding: 7px 40px; /* Preenchimento interno */
+    font-size: 18px; /* Tamanho da fonte */
+    border-radius: 3px; /* Bordas arredondadas */
     font-weight: bold; /* Texto em negrito */
     cursor: pointer; /* Indica que o botão é clicável */
     transition: 0.5s linear; /* Transição suave para hover */
@@ -173,16 +169,17 @@
 }
 
 /* Efeito de hover no botão de cadastro */
-#cadastro_button:hover{
-    transform: scale(1.05); /* Aumenta o botão ao passar o mouse */
+#cadastro_button:hover {
+    transform: scale(1.05); /* Aumenta ao passar o mouse */
 }
 
-#div_mensagem{
+#div_mensagem {
     opacity: 0.70;
     font-size: 14px;
     width: 100%;
     color: red;
 }
+
 .card_erro {
     display: none;
     background-color: #fff;
@@ -190,7 +187,7 @@
     width: 230px;
     position: fixed;
     border-radius: 4px;
-    border: #ED145B 3px solid;
+    border: rgb(30, 128, 1) 3px solid;
     padding: 10px;
     margin-right: 10%;
     top: 10%;

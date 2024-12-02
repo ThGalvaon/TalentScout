@@ -1,13 +1,13 @@
 function entrar() {
-    // aguardar();
+    aguardar();
 
     var emailVar = email.value;
     var senhaVar = password.value;
 
     if (emailVar == "" || senhaVar == "") {
         cardErro.style.display = "block"
-        mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-        // finalizarAguardar();
+        mensagem_erro.innerHTML = "Preencha todos os campos";
+        finalizarAguardar();
         return false;
     }
     else {
@@ -50,8 +50,10 @@ function entrar() {
             console.log("Houve um erro ao tentar realizar o login!");
 
             resposta.text().then(texto => {
+                cardErro.style.display = "block"
+                mensagem_erro.innerHTML = (texto);
                 console.error(texto);
-                // finalizarAguardar(texto);
+                finalizarAguardar(texto);
             });
         }
     }).catch(function (erro) {
